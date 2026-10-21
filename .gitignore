@@ -10,6 +10,5 @@ __pycache__/
 # local only
 .DS_Store
 .claude/
-backup/
 .env
 .env.*
