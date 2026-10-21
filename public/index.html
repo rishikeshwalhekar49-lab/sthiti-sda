@@ -1,0 +1,1044 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Sthiti</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Schibsted+Grotesk:wght@500;600;700;800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap">
+<link rel="stylesheet" href="/app.css">
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap top-in">
+    <a class="brand" href="#home" aria-label="Sthiti home">
+      <svg width="20" height="18" viewBox="0 0 20 18" aria-hidden="true"><rect x="0" y="1" width="18" height="3" rx="1.5" fill="var(--ink)"/><rect x="0" y="7.5" width="12" height="3" rx="1.5" fill="var(--h0)"/><rect x="6" y="14" width="9" height="3" rx="1.5" fill="var(--h1)"/></svg>
+      Sthiti
+    </a>
+    <nav class="nav" aria-label="Pages">
+      <a href="#home" data-route="home">Home</a>
+      <a href="#learn" data-route="learn">Learn</a>
+      <a href="#tools" data-route="tools">Tools</a>
+      <a href="#engine" data-route="engine">Regime engine</a>
+    </nav>
+  </div>
+</header>
+
+<div class="status-bar">
+  <div class="wrap status-in" id="statusBar" aria-live="polite">
+    <span><span class="dot" id="stDot"></span><b id="stMarket">Connecting…</b></span>
+    <span id="stIndex"></span>
+    <span id="stEod"></span>
+    <span id="stErr" class="status-err"></span>
+  </div>
+</div>
+
+<main>
+<!-- ============ HOME ============ -->
+<div class="page" data-page="home">
+  <div class="ticker-wrap" id="ticker" hidden aria-label="Live index ticker"></div>
+  <section class="wrap weather-wrap">
+    <a class="weather" id="weather" href="#engine">
+      <span class="weather-icon" id="wIcon" aria-hidden="true">·</span>
+      <span class="weather-body"><b id="wLabel">Reading the market…</b><span id="wLine"></span></span>
+      <span class="weather-go" aria-hidden="true">See the engine →</span>
+    </a>
+  </section>
+  <section class="wrap hero">
+    <div class="hero-grid">
+      <div>
+        <div class="eyebrow mono-label"><span>Stock-market learning</span><span>Live NSE &amp; BSE data</span><span>Regime detection</span></div>
+        <h1>Learn the market from the market itself.</h1>
+        <p class="lede">Sthiti takes what paid and free stock-market courses teach and ties every lesson to a live market statistic, so a P/E or an RSI reading arrives with its meaning attached. Underneath, a regime engine reads the shape of the market and tells you which lessons apply today.</p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="#tools">Try the tools <span aria-hidden="true">→</span></a>
+          <a class="btn btn-ghost" href="#learn">What courses teach</a>
+        </div>
+        <p class="name-note"><span lang="hi">स्थिति</span> (sthiti) means “state” or “condition” in Hindi and Marathi. Here it's the state the market is in.</p>
+      </div>
+
+      <aside class="state" aria-label="Market state">
+        <div class="state-head"><span class="mono-label">Market state</span><span class="src live" id="hsSrc">NSE · live</span></div>
+        <div class="state-regime">
+          <div><span class="mono-label">Regime engine</span><b id="hsRegime">—</b><p id="hsRegimeNote">Reading sector correlations…</p></div>
+          <svg viewBox="0 0 96 64" width="96" height="64" aria-hidden="true" id="hsBars"></svg>
+        </div>
+        <div class="state-mood">
+          <div><div class="gauge-mini" id="hsGauge"></div><div class="gauge-caption"><b id="hsScore" data-countup>—</b><span id="hsZone"></span></div></div>
+          <dl class="state-stats">
+            <div><dt>NIFTY 50</dt><dd id="hsNifty" data-countup>—</dd></div>
+            <div><dt>India VIX</dt><dd id="hsVIX" data-countup>—</dd></div>
+            <div><dt>Advance / decline</dt><dd id="hsAD" data-countup>—</dd></div>
+            <div><dt>FII net</dt><dd id="hsFII" data-countup>—</dd></div>
+          </dl>
+        </div>
+        <a class="state-row" href="#tools/t-position" id="hsLesson"><span class="mono-label">Lesson for this state</span>—</a>
+        <a class="state-row" href="#tools/t-chart" id="hsWatch"><span class="mono-label">On your watchlist</span>—</a>
+      </aside>
+    </div>
+  </section>
+
+  <section class="wrap sec" id="start-here">
+    <div class="sec-label mono-label">New here</div>
+    <div>
+      <h2>Never bought a share? Start at the beginning</h2>
+      <p class="intro">The tools on this site read a live market, which is a lot to take in at once. The learning path breaks it into twelve short lessons, and each one ends on the single tool it applies to.</p>
+      <div class="stage-cards" id="homeStages"></div>
+      <div class="cta-row"><a class="btn btn-primary" id="homeContinue" href="#learn/b1">Start lesson 1 <span aria-hidden="true">→</span></a><a class="btn btn-ghost" href="#learn">See all twelve lessons</a></div>
+    </div>
+  </section>
+
+  <section class="wrap sec">
+    <div class="sec-label mono-label">How it works</div>
+    <div>
+      <h2>Three layers on one screen</h2>
+      <div class="layers">
+        <a class="layer" href="#learn"><span class="mono-label">Learn</span><b>The five pillars every course teaches</b><p>Fundamentals, technicals, derivatives, risk and psychology, in short lessons.</p><span class="go">See the syllabus →</span></a>
+        <a class="layer" href="#tools"><span class="mono-label">Apply</span><b>Every lesson ends on a live number</b><p>Scorecards, chart annotations, a mood meter, calculators and simulators reading NSE and BSE data.</p><span class="go">Try the tools →</span></a>
+        <a class="layer" href="#engine"><span class="mono-label">Read the regime</span><b>Know which lessons apply today</b><p>A topological engine watches 18 NSE sector indices and spots when the market changes state.</p><span class="go">See the engine →</span></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap sec">
+    <div class="sec-label mono-label">Why</div>
+    <div>
+      <h2>Why course knowledge doesn't carry over to the screen</h2>
+      <div class="pairs">
+        <div class="pair"><div class="prob"><b>Concepts are taught in isolation</b>A lesson on P/E ends with a textbook example, not the stock in front of you.</div><span class="arrow" aria-hidden="true">→</span><div class="ans">Every lesson ends on a live statistic and a tool that uses it. <a href="#learn/bridge">The bridge table</a></div></div>
+        <div class="pair"><div class="prob"><b>Screeners overwhelm beginners</b>A P/E and a beta sit in a grid with no explanation.</div><span class="arrow" aria-hidden="true">→</span><div class="ans">Tap any number for a 30-second lesson about that stock, right now. <a href="#tools/t-screen">Learn-as-you-screen</a></div></div>
+        <div class="pair"><div class="prob"><b>Market shifts are explained after the fact</b>Research reads topological signals retrospectively, and a norm spike names no sectors.</div><span class="arrow" aria-hidden="true">→</span><div class="ans">The regime engine reads today's correlations and names the sectors behind the shape. <a href="#engine">Regime engine</a></div></div>
+        <div class="pair"><div class="prob"><b>The same mistakes repeat</b>Holding losers, cutting winners and revenge trading survive every course.</div><span class="arrow" aria-hidden="true">→</span><div class="ans">Post-trade diagnostics read your own paper trades and assign the module that fixes the habit. <a href="#tools/t-paper">Diagnostics</a></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap sec">
+    <div class="sec-label mono-label">Features</div>
+    <div>
+      <h2>Ten features, each tied to a lesson</h2>
+      <div class="feat-group">
+        <h3 class="mono-label">Lesson → live data</h3>
+        <div class="feat-grid">
+          <a class="feat" href="#tools/t-screen"><span class="mono-label">Fundamentals</span><b>Stock health scorecard</b><p>Live P/E, ROE, margins and market cap, checked against the lesson's criteria.</p></a>
+          <a class="feat" href="#tools/t-chart"><span class="mono-label">Technicals</span><b>Chart annotations</b><p>Every RSI threshold crossing marked on a real price series.</p></a>
+          <a class="feat" href="#tools/t-mood"><span class="mono-label">Sentiment</span><b>Market mood meter</b><p>Today's FII/DII flows, breadth and India VIX in plain English.</p></a>
+          <a class="feat" href="#tools/t-position"><span class="mono-label">Risk</span><b>Stop-loss &amp; position calculator</b><p>Position size from your capital and the stock's live ATR.</p></a>
+          <a class="feat" href="#tools/t-options"><span class="mono-label">Derivatives</span><b>Option strategy simulator</b><p>The live NIFTY option chain as a payoff graph.</p></a>
+        </div>
+      </div>
+      <div class="feat-group">
+        <h3 class="mono-label">Topology tools</h3>
+        <div class="feat-grid four">
+          <a class="feat" href="#tools/t-topo"><span class="mono-label">Screening</span><b>Topo-Screen</b><p>Stocks ranked by how far they sit from the market's correlation cluster.</p></a>
+          <a class="feat" href="#tools/t-backtest"><span class="mono-label">Proof</span><b>Regime backtester</b><p>Your strategy, with the wrong regimes filtered out.</p></a>
+          <a class="feat" href="#tools/t-portfolio"><span class="mono-label">Institutional</span><b>Portfolio fragility</b><p>Hidden concentration in a basket that looks diversified.</p></a>
+          <a class="feat" href="#engine/replay"><span class="mono-label">Evidence</span><b>Crash replay</b><p>Watch 2020 and 2018 warp the structure, day by day.</p></a>
+        </div>
+      </div>
+      <div class="feat-group">
+        <h3 class="mono-label">Platform</h3>
+        <div class="feat-grid">
+          <a class="feat" href="#tools/t-screen"><span class="mono-label">Tooltips</span><b>Learn-as-you-screen</b><p>A 30-second lesson next to every live metric.</p></a>
+          <a class="feat" href="#tools/t-paper"><span class="mono-label">Practice</span><b>Paper trading</b><p>Virtual money on a live price feed, with post-trade diagnostics.</p></a>
+          <a class="feat" href="#tools/t-scanner"><span class="mono-label">Scanning</span><b>Pattern &amp; breakout scanner</b><p>The NIFTY 500 screened for the patterns taught in the course.</p></a>
+          <a class="feat" href="#tools/t-chart"><span class="mono-label">Progress</span><b>Quizzes on real data</b><p>Questions built from today's market, with XP.</p></a>
+          <a class="feat" href="#engine/ask"><span class="mono-label">Plain English</span><b>Ask the engine</b><p>Type a question, get the topology explained in a sentence.</p></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap sec">
+    <div class="sec-label mono-label">Under the hood</div>
+    <div>
+      <h2>A regime engine built on topology</h2>
+      <div class="teaser">
+        <div>
+          <p class="intro" style="margin-top:0">The same RSI reading means different things in a calm market and a falling one. The regime engine applies persistent homology to the correlation structure of NSE sector indices and tells learners which state they're in.</p>
+          <div class="cta-row"><a class="btn btn-primary btn-sm" href="#engine">Explore the engine</a></div>
+        </div>
+        <ul class="facts">
+          <li><b>7</b><span>patent candidates, from a streaming persistence engine to IV-surface topology</span></li>
+          <li><b>8</b><span>gaps in the research, each with a candidate aimed at it</span></li>
+          <li><b id="hsSectors">18</b><span>NSE sector indices watched, over <span id="hsDays">260</span> trading days</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div class="page" data-page="learn" hidden>
+  <section class="wrap phead">
+    <div class="eyebrow mono-label"><span>Learn</span><span>Beginner to advanced</span></div>
+    <h1>Learn the market, one step at a time</h1>
+    <p class="intro">Twelve lessons in three stages. Stage 1 assumes you have never bought a share. Each lesson is a few minutes of reading, two questions to check yourself, and one tool on this site to try it on. The lessons never change; the market data they point you at does.</p>
+    <div class="learn-top">
+      <div class="progress-card">
+        <span class="mono-label">Your progress</span>
+        <div class="big-num" id="lpDone">0<small>of 12 lessons</small></div>
+        <div class="xp-bar" aria-hidden="true"><span id="lpFill"></span></div>
+        <div class="trade-row"><a class="btn btn-primary btn-sm" id="lpContinue" href="#learn/b1">Start with lesson 1</a><button type="button" class="chipbtn" id="lpReset">Reset</button></div>
+        <p class="hint">Progress is kept in this browser only.</p>
+      </div>
+      <div class="stage-cards" id="stageCards"></div>
+    </div>
+  </section>
+
+  <section class="wrap" id="curriculum"></section>
+
+<section class="wrap sec" id="bridge">
+    <div class="sec-label mono-label">Bridge</div>
+    <div>
+      <h2>From course concept to live statistic</h2>
+      <p class="intro">Instead of teaching each concept in isolation, every module links to the market data it describes, and to a feature that puts it to work.</p>
+      <div class="bridge-wrap">
+        <table class="bridge">
+          <thead><tr><th scope="col">Course concept</th><th scope="col">Statistic needed</th><th scope="col">Applied-learning feature</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Fundamental valuation</th><td>Live P/E, market cap, debt, profit growth, EPS</td><td><a href="#tools/t-screen">Stock health scorecard</a>. Breaks down a live stock's fundamentals and explains why its P/E is high or low, using the lesson's criteria.</td></tr>
+            <tr><th scope="row">Technical indicators</th><td>Live RSI, MACD, moving-average overlays</td><td><a href="#tools/t-chart">Interactive chart annotations</a>. After the RSI lesson, highlights stocks crossing overbought or oversold levels right now.</td></tr>
+            <tr><th scope="row">Market sentiment</th><td>Advance/decline ratio, FII/DII activity, India VIX</td><td><a href="#tools/t-mood">Market mood meter</a>. A live gauge that explains institutional buying and selling in plain English, drawing on the psychology module.</td></tr>
+            <tr><th scope="row">Risk management</th><td>Beta, volatility (standard deviation), ATR</td><td><a href="#tools/t-position">Smart stop-loss &amp; position calculator</a>. Enter total capital and get a safe position size from the stock's live volatility.</td></tr>
+            <tr><th scope="row">Derivatives / options</th><td>Live option chain, open-interest buildup, max pain</td><td><a href="#tools/t-options">Visual option strategy simulator</a>. Turns option-chain math into a payoff graph for bullish and bearish strategies.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap sec" id="pillars">
+    <div class="sec-label mono-label">Reference</div>
+    <div>
+      <h2>The five pillars, as courses teach them</h2>
+      <p class="intro">The twelve lessons above are the path through this material. Below is the same ground grouped the way paid academies and free platforms organise it, with the live tool for each.</p>
+      <details class="how" style="margin-top:18px"><summary>Open the five-pillar syllabus</summary>
+<div class="wrap-inner">
+    <div class="pillars">
+      <article class="pillar" id="p-fund">
+        <div><span class="mono-label">Pillar</span><h2>Fundamental analysis</h2></div>
+        <div>
+          <p class="pillar-sum">How to judge a company's financial health from its balance sheet, profit-and-loss statement and key ratios.</p>
+          <ul class="topics"><li>Balance sheet</li><li>P&amp;L statement</li><li>P/E ratio</li><li>ROE</li><li>Debt-to-equity</li><li>EPS</li></ul>
+          <p class="regime-note"><span class="mono-label">Regime note</span>In a stress regime stocks move together, so a company's own numbers explain less of each day's move. Fundamentals matter more again once sectors separate.</p>
+        </div>
+        <div><a class="pillar-live" href="#tools/t-screen"><span class="mono-label">Practise it live</span><b>Stock health scorecard</b><span>Live P/E, market cap, debt, profit growth and EPS</span></a><a class="pillar-also" href="#tools/t-screen">Also: learn-as-you-screen</a></div>
+      </article>
+
+      <article class="pillar" id="p-tech">
+        <div><span class="mono-label">Pillar</span><h2>Technical analysis &amp; price action</h2></div>
+        <div>
+          <p class="pillar-sum">Reading candlestick charts, spotting patterns, and using indicators to judge momentum and trend.</p>
+          <ul class="topics"><li>Candlesticks</li><li>Head &amp; shoulders</li><li>Triangles</li><li>RSI</li><li>MACD</li><li>Moving averages</li><li>VWAP</li></ul>
+          <p class="regime-note"><span class="mono-label">Regime note</span>Oscillators like RSI suit range-bound markets. In a strong trend RSI can sit above 70 for weeks. The regime tells you which reading to trust.</p>
+        </div>
+        <div><a class="pillar-live" href="#tools/t-chart"><span class="mono-label">Practise it live</span><b>Interactive chart annotations</b><span>Live RSI, MACD and moving-average overlays</span></a><a class="pillar-also" href="#tools/t-scanner">Also: pattern &amp; breakout scanner</a></div>
+      </article>
+
+      <article class="pillar" id="p-deriv">
+        <div><span class="mono-label">Pillar</span><h2>Derivatives &amp; advanced strategies</h2></div>
+        <div>
+          <p class="pillar-sum">Futures and options, reading an option chain, implied volatility, hedging, and the ideas behind algorithmic trading.</p>
+          <ul class="topics"><li>Futures</li><li>Options (F&amp;O)</li><li>Option chain</li><li>Implied volatility</li><li>Hedging</li><li>Algo trading</li></ul>
+          <p class="regime-note"><span class="mono-label">Regime note</span>Implied volatility and India VIX rise as the market moves toward stress, so the same option costs more. Patent candidate 7 tests whether the IV surface changes shape before the cash market does.</p>
+        </div>
+        <div><a class="pillar-live" href="#tools/t-options"><span class="mono-label">Practise it live</span><b>Option strategy simulator</b><span>Live option chain, OI buildup and max pain</span></a></div>
+      </article>
+
+      <article class="pillar" id="p-risk">
+        <div><span class="mono-label">Pillar</span><h2>Risk management &amp; portfolio building</h2></div>
+        <div>
+          <p class="pillar-sum">Sizing positions, placing stop-losses, weighing risk against reward, allocating across assets, and the tax that follows.</p>
+          <ul class="topics"><li>Position sizing</li><li>Stop-loss</li><li>Risk-to-reward</li><li>Asset allocation</li><li>Tax implications</li></ul>
+          <p class="regime-note"><span class="mono-label">Regime note</span>Volatility-based stops widen when ATR expands, so the same rupee risk buys fewer shares. The calculator does this for you.</p>
+        </div>
+        <div><a class="pillar-live" href="#tools/t-position"><span class="mono-label">Practise it live</span><b>Stop-loss &amp; position calculator</b><span>Live beta, standard deviation and ATR</span></a></div>
+      </article>
+
+      <article class="pillar" id="p-psych">
+        <div><span class="mono-label">Pillar</span><h2>Trading psychology &amp; discipline</h2></div>
+        <div>
+          <p class="pillar-sum">Managing fear of missing out, resisting panic selling, and sticking to a trade plan.</p>
+          <ul class="topics"><li>FOMO</li><li>Panic selling</li><li>Trade plans</li><li>Discipline</li></ul>
+          <p class="regime-note"><span class="mono-label">Regime note</span>FOMO tends to peak late in rallies and panic selling in stress. The mood meter names the feeling before you act on it.</p>
+        </div>
+        <div><a class="pillar-live" href="#tools/t-mood"><span class="mono-label">Practise it live</span><b>Market mood meter</b><span>Advance/decline, FII/DII activity and India VIX</span></a><a class="pillar-also" href="#tools/t-paper">Also: post-trade diagnostics</a></div>
+      </article>
+    </div>
+  </div>
+
+        </details>
+    </div>
+  </section>
+</div>
+
+<!-- ============ TOOLS ============ -->
+<div class="page" data-page="tools" hidden>
+  <section class="wrap phead">
+    <div class="eyebrow mono-label"><span>Tools</span><span id="toolsSrc" class="src live">NSE &amp; BSE data</span></div>
+    <h1>Every tool starts from a lesson and ends on a number</h1>
+    <p class="intro">Each tool below reads real market data through this machine: live index levels, breadth, FII/DII flows and the NIFTY option chain from NSE, live quotes and fundamentals from BSE, and NSE's official end-of-day files for price history.</p>
+    <nav class="index" aria-label="Tools">
+      <a href="#tools/t-screen">Screener &amp; scorecard</a><a href="#tools/t-chart">Chart &amp; quiz</a><a href="#tools/t-mood">Mood meter</a><a href="#tools/t-position">Position calculator</a><a href="#tools/t-options">Option simulator</a><a href="#tools/t-scanner">Scanner</a><a href="#tools/t-topo">Topo-Screen</a><a href="#tools/t-backtest">Regime backtester</a><a href="#tools/t-portfolio">Portfolio fragility</a><a href="#tools/t-paper">Paper trading</a>
+    </nav>
+  </section>
+
+  <div class="wrap">
+    <section class="tool" id="t-screen">
+      <div class="tool-head">
+        <div><span class="mono-label">Learn-as-you-screen · Stock health scorecard</span><h2>Tap any number for a 30-second lesson</h2></div>
+        <dl class="tool-meta"><dt>Pillar</dt><dd><a href="#learn/p-fund">Fundamental analysis</a></dd><dt>Statistics</dt><dd>P/E, ROE, EPS, market cap, beta, RSI</dd></dl>
+      </div>
+      <p class="tool-intro">Beginners open a screener and see a P/E or a beta with no idea what it means. Here every number is a button: pick one to get a lesson about that stock, and a health scorecard for its company.</p>
+      <div class="panel">
+        <div class="panel-bar"><span class="mono-label">Ten NIFTY 50 stocks</span><span class="src" id="screenSrc">—</span></div>
+        <div class="tbl-scroll"><table class="data-tbl screener" id="screener"></table></div>
+        <div class="split">
+          <div class="lesson" id="lesson" aria-live="polite"></div>
+          <div class="scorecard" id="scorecard" aria-live="polite"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="tool" id="t-chart">
+      <div class="tool-head">
+        <div><span class="mono-label">Interactive chart annotations · Quizzes on real data</span><h2>See RSI thresholds on the chart, then get quizzed on them</h2></div>
+        <dl class="tool-meta"><dt>Pillar</dt><dd><a href="#learn/p-tech">Technical analysis</a></dd><dt>Statistics</dt><dd>RSI (14), 50-day moving average</dd></dl>
+      </div>
+      <p class="tool-intro">After the RSI lesson, the chart marks every day this stock crossed the overbought or oversold line. Hover any day to read its close, its 50-day average and its RSI.</p>
+      <div class="panel">
+        <div class="panel-bar">
+          <div class="pick"><label class="mono-label" for="chartStock">Stock</label><select class="pick-sel" id="chartStock"></select></div>
+          <span class="src" id="chartSrc">—</span>
+        </div>
+        <div class="chart-wrap">
+          <div class="legend-row"><span class="lg"><i></i>Close</span><span class="lg"><i class="sma"></i>50-day MA</span><span class="lg"><i class="rsi"></i>RSI (14)</span><span class="lg"><i class="zob"></i>RSI above 70</span><span class="lg"><i class="zos"></i>RSI below 30</span></div>
+          <div class="chart" id="rsiChart"><div class="tip" id="rsiTip" hidden></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="tool" id="t-mood">
+      <div class="tool-head">
+        <div><span class="mono-label">Market mood meter</span><h2>What today's institutional buying and selling means</h2></div>
+        <dl class="tool-meta"><dt>Pillar</dt><dd><a href="#learn/p-psych">Trading psychology</a></dd><dt>Statistics</dt><dd>Advance/decline, FII/DII net flows, India VIX</dd></dl>
+      </div>
+      <p class="tool-intro">The gauge combines breadth, institutional flows and volatility into one reading, then explains it in plain English. It reports today's market and nothing else — there is nothing here to adjust.</p>
+      <div class="panel">
+        <div class="panel-bar"><span class="mono-label">Today's session</span><span class="src" id="moodSrc">—</span></div>
+        <div class="mood">
+          <div class="mood-left">
+            <div class="gauge-big" id="moodGauge"></div>
+            <div class="mood-score"><b id="moodScore">—</b><span id="moodZone"></span></div>
+            <div class="mood-text" id="moodText" aria-live="polite"></div>
+          </div>
+          <div class="mood-right">
+            <span class="mono-label">Today's readings</span>
+            <dl class="fixed-readings">
+              <div><dt>Advance / decline (NIFTY 500)</dt><dd id="mADo">—</dd></div>
+              <div><dt>FII net</dt><dd id="mFIIo">—</dd></div>
+              <div><dt>DII net</dt><dd id="mDIIo">—</dd></div>
+              <div><dt>India VIX</dt><dd id="mVIXo">—</dd></div>
+            </dl>
+            <div>
+              <span class="mono-label">Components, 0–100</span>
+              <div class="comps">
+                <div class="comp"><span>Breadth</span><div class="comp-track"><span id="cB"></span></div><output id="cBo">—</output></div>
+                <div class="comp"><span>Flows</span><div class="comp-track"><span id="cF"></span></div><output id="cFo">—</output></div>
+                <div class="comp"><span>Volatility</span><div class="comp-track"><span id="cV"></span></div><output id="cVo">—</output></div>
+              </div>
+            </div>
+            <details class="how"><summary>How the score is built</summary><p>Breadth scores 50 at an advance/decline ratio of 1, 100 at 3 and 0 at ⅓ (log scale). Flows score 50 at zero combined FII + DII flow, ±50 at ±₹6,000 crore. Volatility scores 100 at a VIX of 10 and 0 at 30. The mood is 35% breadth, 30% flows and 35% volatility. These weights are Sthiti's own starting point for testing, not a published standard.</p></details>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="tool" id="t-position">
+      <div class="tool-head">
+        <div><span class="mono-label">Smart stop-loss &amp; position calculator</span><h2>Size the trade from your capital and the stock's volatility</h2></div>
+        <dl class="tool-meta"><dt>Pillar</dt><dd><a href="#learn/p-risk">Risk management</a></dd><dt>Statistics</dt><dd>ATR (14), beta</dd></dl>
+      </div>
+      <p class="tool-intro">Entry price and ATR come from live data. The stop sits a multiple of ATR below entry, so a jumpier stock gets a wider stop and a smaller position.</p>
+      <div class="panel">
+        <div class="panel-bar"><span class="mono-label">Live entry price and ATR</span><span class="src" id="posSrc">—</span></div>
+        <div class="posc">
+          <div class="posc-form">
+            <div class="field"><label for="pStock">Stock</label><select id="pStock"></select></div>
+            <div class="field"><label for="pCap">Total capital (₹)</label><input type="number" id="pCap" min="1000" step="1000" value="500000" inputmode="numeric"></div>
+            <div class="ctl"><label for="pRisk"><span>Risk per trade</span><output id="pRisko">1.00%</output></label><input type="range" id="pRisk" min="0.25" max="3" step="0.25" value="1"></div>
+            <div class="field"><label for="pEntry">Entry price (₹)</label><input type="number" id="pEntry" min="1" step="0.05" value="0" inputmode="decimal"></div>
+            <div class="field"><label for="pATR">ATR, 14-day (₹)</label><input type="number" id="pATR" min="0.05" step="0.05" value="0" inputmode="decimal"></div>
+            <div class="ctl"><label for="pMult"><span>Stop distance</span><output id="pMulto">2.0 × ATR</output></label><input type="range" id="pMult" min="1" max="4" step="0.5" value="2"></div>
+            <div class="ctl"><label for="pRR"><span>Target</span><output id="pRRo">2.0 R</output></label><input type="range" id="pRR" min="1" max="4" step="0.5" value="2"></div>
+          </div>
+          <div class="posc-out" aria-live="polite">
+            <span class="mono-label">Position size</span>
+            <div class="big-num" id="pShares">—</div>
+            <dl class="kv" id="pKV"></dl>
+            <p class="note" id="pNote"></p>
+          </div>
+          <div class="posc-ladder"><span class="mono-label">Trade plan</span><div id="pLadder"></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="tool" id="t-options">
+      <div class="tool-head">
+        <div><span class="mono-label">Visual option strategy simulator</span><h2>Turn the live option chain into a payoff graph</h2></div>
+        <dl class="tool-meta"><dt>Pillar</dt><dd><a href="#learn/p-deriv">Derivatives</a></dd><dt>Statistics</dt><dd>Option chain, implied volatility, OI, max pain</dd></dl>
+      </div>
+      <p class="tool-intro">Legs are priced at the market: every premium is the traded price from NSE's NIFTY option chain, and the dashed curve uses each strike's own implied volatility. Nothing here is modelled except that curve.</p>
+      <div class="panel">
+        <div class="panel-bar"><span class="mono-label" id="optHead">NIFTY options</span><span class="src" id="optSrc">—</span></div>
+        <div class="opt-controls">
+          <div class="field"><label for="oStrat">Strategy</label><select id="oStrat">
+            <option value="lc">Long call</option>
+            <option value="lp">Long put</option>
+            <option value="bcs" selected>Bull call spread</option>
+            <option value="bps">Bear put spread</option>
+            <option value="ls">Long straddle</option>
+            <option value="ic">Iron condor</option>
+          </select></div>
+          <div class="ctl"><label for="oWidth"><span>Strikes away</span><output id="oWidtho">6</output></label><input type="range" id="oWidth" min="2" max="12" step="1" value="6"></div>
+          <div class="ctl"><label for="oLots"><span>Lots</span><output id="oLotso">1</output></label><input type="range" id="oLots" min="1" max="10" step="1" value="1"></div>
+          <div class="field"><label>Expiry</label><div class="hint" id="oExpiry">—</div></div>
+          <div class="field"><label>Lot size</label><div class="hint" id="oLotSize">—</div></div>
+        </div>
+        <div class="strat-view" id="oView"></div>
+        <div class="opt-main">
+          <div class="opt-chart">
+            <div class="legend-row"><span class="lg"><i class="exp"></i>P&amp;L at expiry</span><span class="lg"><i class="t0"></i>P&amp;L today</span></div>
+            <div class="chart" id="payoff"><div class="tip" id="payTip" hidden></div></div>
+          </div>
+          <div class="opt-side" aria-live="polite">
+            <dl class="kv" id="oKV" style="margin-top:0"></dl>
+            <table class="legs" id="oLegs"></table>
+            <p class="hint" id="oNote"></p>
+          </div>
+        </div>
+        <div class="oi">
+          <div class="oi-head"><h3>Open interest by strike</h3><div class="legend-row"><span class="lg"><i class="call"></i>Call OI (CE)</span><span class="lg"><i class="put"></i>Put OI (PE)</span></div></div>
+          <div class="chart" id="oiChart"><div class="tip" id="oiTip" hidden></div></div>
+          <p class="oi-read" id="oiRead"></p>
+        </div>
+      </div>
+    </section>
+
+    <section class="tool" id="t-scanner">
+      <div class="tool-head">
+        <div><span class="mono-label">Pattern &amp; breakout scanner</span><h2>The NIFTY 500, screened for the patterns you just learned</h2></div>
+        <dl class="tool-meta"><dt>Pillar</dt><dd><a href="#learn/p-tech">Technical analysis</a></dd><dt>Statistics</dt><dd>200-day MA, RSI, volume, 52-week range</dd></dl>
+      </div>
+      <p class="tool-intro">Every NIFTY 500 stock with a year of price history is checked for the course's signals, then each hit is read against the current regime.</p>
+      <div class="panel">
+        <div class="panel-bar">
+          <div class="scan-bar" role="group" aria-label="Filter signals">
+            <button type="button" class="chipbtn" data-f="all" aria-pressed="true">All</button>
+            <button type="button" class="chipbtn" data-f="ma" aria-pressed="false">Moving-average crosses</button>
+            <button type="button" class="chipbtn" data-f="pattern" aria-pressed="false">Breakouts &amp; patterns</button>
+            <button type="button" class="chipbtn" data-f="rsi" aria-pressed="false">RSI extremes</button>
+          </div>
+          <span class="src" id="scanSrc">—</span>
+        </div>
+        <div class="panel-bar" style="border-bottom:1px solid var(--rule)"><div class="regime-strip"><span class="mono-label">Regime check</span><b id="scanRegime">—</b><span id="scanRegimeNote"></span></div></div>
+        <div class="tbl-scroll"><table class="data-tbl scanner" id="scanner"></table></div>
+      </div>
+    </section>
+
+
+    <section class="tool" id="t-topo">
+      <div class="tool-head">
+        <div><span class="mono-label">Topo-Screen</span><h2>Screen the market by its topology, not just its prices</h2></div>
+        <dl class="tool-meta"><dt>Pillar</dt><dd><a href="#engine">Regime engine</a></dd><dt>Statistics</dt><dd>Correlation distance, 30-day correlation change</dd></dl>
+      </div>
+      <p class="tool-intro">Two columns no other screener has. <b>Distance from the cluster</b> is how far a stock sits from the rest of the market in correlation space: high means it is moving on its own, which is where a hedge or a genuine safe haven comes from. <b>Correlation change</b> is how much that has shifted in a month: a large negative number means the stock has just broken out of the pack.</p>
+      <div class="panel">
+        <div class="panel-bar">
+          <div class="scan-bar" role="group" aria-label="Sort Topo-Screen">
+            <button type="button" class="chipbtn" data-t="isolated" aria-pressed="true">Most isolated</button>
+            <button type="button" class="chipbtn" data-t="breakout" aria-pressed="false">Breaking out of the cluster</button>
+            <button type="button" class="chipbtn" data-t="coupled" aria-pressed="false">Most coupled</button>
+            <button type="button" class="chipbtn" data-t="joining" aria-pressed="false">Joining the cluster</button>
+          </div>
+          <span class="src" id="topoSrc">—</span>
+        </div>
+        <div class="panel-bar" style="border-bottom:1px solid var(--rule)">
+          <div class="pick"><label class="mono-label" for="topoFind">Find</label><input class="pick-sel" id="topoFind" type="search" placeholder="symbol or industry" style="min-width:200px"></div>
+          <span class="src" id="topoCount"></span>
+        </div>
+        <div class="tbl-scroll"><table class="data-tbl scanner" id="topoTable"></table></div>
+      </div>
+    </section>
+
+    <section class="tool" id="t-backtest">
+      <div class="tool-head">
+        <div><span class="mono-label">Regime-conditioned backtester</span><h2>The same strategy, with the wrong regimes filtered out</h2></div>
+        <dl class="tool-meta"><dt>Pillar</dt><dd><a href="#learn/p-tech">Technical analysis</a></dd><dt>Statistics</dt><dd>Two years, NIFTY 500, regime at entry</dd></dl>
+      </div>
+      <p class="tool-intro">Every signal from the course, run across the NIFTY 500 over two years of real closes, then split by the regime the engine read on the day the trade opened. Untick a regime to see what the strategy looks like without it.</p>
+      <div class="panel">
+        <div class="panel-bar">
+          <div class="pick"><label class="mono-label" for="btStrat">Strategy</label><select class="pick-sel" id="btStrat"></select></div>
+          <span class="src" id="btSrc">—</span>
+        </div>
+        <div class="panel-bar" style="border-bottom:1px solid var(--rule)">
+          <div class="scan-bar" role="group" aria-label="Regimes to include">
+            <span class="mono-label">Trade only in</span>
+            <button type="button" class="chipbtn" data-r="calm" aria-pressed="true">Calm</button>
+            <button type="button" class="chipbtn" data-r="trans" aria-pressed="true">Transitional</button>
+            <button type="button" class="chipbtn" data-r="stress" aria-pressed="true">Stress</button>
+          </div>
+          <span class="src" id="btRule"></span>
+        </div>
+        <div class="bt-main">
+          <div class="bt-stats" id="btStats" aria-live="polite"></div>
+          <div class="bt-chart"><span class="mono-label">Win rate and average return by regime</span><div class="chart" id="btChart"><div class="tip" id="btTip" hidden></div></div></div>
+        </div>
+        <p class="hint" style="padding:0 20px 16px">Entries and exits both fill at the next session's close, so no bar is used before it exists. No brokerage, slippage or taxes are deducted, and past results are not a forecast.</p>
+      </div>
+    </section>
+
+    <section class="tool" id="t-portfolio">
+      <div class="tool-head">
+        <div><span class="mono-label">Portfolio fragility scanner</span><h2>Your own holdings, checked for hidden concentration</h2></div>
+        <dl class="tool-meta"><dt>Pillar</dt><dd><a href="#learn/p-risk">Risk management</a></dd><dt>Statistics</dt><dd>60-day correlations across your basket</dd></dl>
+      </div>
+      <p class="tool-intro">Paste your holdings. The engine isolates that basket, measures how tightly it is coupled, and names the groups that move as one — the concentration a sector breakdown hides.</p>
+      <div class="panel">
+        <div class="panel-bar"><span class="mono-label">Holdings · symbol and weight per line, or CSV</span><span class="src" id="pfSrc">—</span></div>
+        <div class="pf">
+          <div class="pf-form">
+            <label class="mono-label" for="pfText">Your holdings</label>
+            <textarea id="pfText" rows="10" spellcheck="false"></textarea>
+            <p class="hint">NSE symbols from the NIFTY 500. Weights are optional and are rescaled to 100%.</p>
+            <div class="trade-row"><button type="button" class="btn btn-primary btn-sm" id="pfRun">Scan the portfolio</button><button type="button" class="chipbtn" id="pfExample">Load an example</button></div>
+          </div>
+          <div class="pf-out" id="pfOut" aria-live="polite"><p class="note">Paste holdings and run the scan.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="tool" id="t-paper">
+      <div class="tool-head">
+        <div><span class="mono-label">Paper trading · Post-trade diagnostics</span><h2>Practise with virtual money, then see your habits</h2></div>
+        <dl class="tool-meta"><dt>Pillar</dt><dd><a href="#learn/p-psych">Trading psychology</a></dd><dt>Statistics</dt><dd>Live price, your trade log</dd></dl>
+      </div>
+      <p class="tool-intro">Trades fill at the live price from BSE. Your log stays in this browser, and the diagnostics on the right read it as soon as you have closed a few trades.</p>
+      <div class="panel">
+        <div class="panel-bar"><span class="mono-label">Virtual account · ₹10,00,000</span><span class="src" id="paperSrc">—</span></div>
+        <div class="paper">
+          <div class="paper-left">
+            <div class="pick"><label class="mono-label" for="paperStock">Stock</label><select class="pick-sel" id="paperStock"></select></div>
+            <div class="tick"><b id="ppPrice">—</b><span id="ppChg"></span></div>
+            <svg class="spark-live" id="ppSpark" viewBox="0 0 300 72" preserveAspectRatio="none" aria-hidden="true"></svg>
+            <div class="trade-row">
+              <div class="field"><label for="ppQty">Quantity</label><input type="number" id="ppQty" min="1" step="1" value="25" inputmode="numeric"></div>
+              <button type="button" class="btn btn-buy btn-sm" id="ppBuy">Buy</button>
+              <button type="button" class="btn btn-sell btn-sm" id="ppSell">Sell</button>
+              <button type="button" class="chipbtn" id="ppClear">Clear log</button>
+            </div>
+            <p class="paper-msg" id="ppMsg" aria-live="polite">Buy to open a position, sell to close it.</p>
+            <dl class="paper-stats">
+              <div><dt>Position</dt><dd id="ppPos">0 shares</dd></div>
+              <div><dt>Unrealised P&amp;L</dt><dd id="ppU">₹0</dd></div>
+              <div><dt>Virtual cash</dt><dd id="ppCash">₹10,00,000</dd></div>
+              <div><dt>Realised</dt><dd id="ppR">₹0</dd></div>
+            </dl>
+            <div class="log"><span class="mono-label">Your closed trades</span><div class="tbl-scroll"><table class="data-tbl" id="ppLog"></table></div></div>
+          </div>
+          <div class="paper-right">
+            <span class="mono-label">Post-trade diagnostics</span>
+            <div class="diag-sum" id="dgSum"></div>
+            <ul class="diag" id="dgList"></ul>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+
+<!-- ============ ENGINE ============ -->
+<div class="page" data-page="engine" hidden>
+  <section class="wrap phead">
+    <div class="eyebrow mono-label"><span>Regime engine</span><span>Topological data analysis</span></div>
+    <h1>The market changes state. The lessons should too.</h1>
+    <div class="primer">
+      <span class="mono-label">In plain words</span>
+      <p>Every share moves for two reasons: something about that company, and something about the market as a whole. When the second reason takes over, sectors that normally go their own way start moving together — and the ordinary rules stop behaving.</p>
+      <p>This page measures that directly, from how closely NSE's sector indices move together. New to the idea? <a href="#learn/a3">Lesson 11 explains regimes</a> and <a href="#learn/a4">lesson 12 explains the barcode</a>, both without mathematics.</p>
+    </div>
+    <nav class="index" aria-label="Engine sections"><a href="#engine/candidates-live">Candidates running</a><a href="#engine/ask">Ask the engine</a><a href="#engine/replay">Crash replay</a><a href="#engine/regimes">Regimes → lessons</a><a href="#engine/candidates">The written claims</a></nav>
+    <p class="intro">Courses teach RSI, stop-losses and valuation as if the market always behaves the same way. It doesn't. The engine takes <span id="egSectors">18</span> NSE sector indices, measures how closely they have moved together over a 60-day window, and reads the shape of that correlation structure with persistent homology.</p>
+  </section>
+
+  <section class="wrap">
+    <div class="hero-grid wide-fig">
+      <div class="engine-copy">
+        <p>Each dot is a sector index, placed so that sectors which move together sit close. Persistent homology grows a radius ε around the dots and records when groups merge and when loops open and close. The record is the barcode on the right.</p>
+        <p>Drag the window back through the last year and watch the shape change. When correlations rise, groups merge earlier and loops die young.</p>
+        <ul class="key" aria-label="How to read FIG. 1">
+          <li><span class="swatch h0"></span><span><b>H₀</b> · groups of sectors that move together. A bar ends when two groups merge.</span></li>
+          <li><span class="swatch h1"></span><span><b>H₁</b> · loops in the correlation structure. A bar runs from when a loop opens to when it fills in.</span></li>
+        </ul>
+        <p class="wide-note">Distances come from the correlation matrix: d = √(2(1 − ρ)) on daily log returns. The dots are a 2-D projection (classical MDS) of those distances, so the picture approximates what the barcode measures exactly.</p>
+      </div>
+
+      <figure class="fig" id="fig1">
+        <div class="fig-head mono-label"><span><b>FIG. 1</b> · Vietoris–Rips filtration on NSE sector correlations</span><span class="src" id="figSrc">—</span></div>
+        <div class="plots" id="plots">
+          <div class="cx-wrap" id="cxWrap"><canvas id="cx" role="img" aria-label="Sector indices placed by correlation distance, linked at the current filtration radius"></canvas></div>
+          <div class="bc-wrap" id="bcWrap"><canvas id="bc" role="img" aria-label="Persistence barcode: H0 component bars and H1 loop bars against epsilon"></canvas></div>
+          <div class="tip" id="tip" hidden></div>
+        </div>
+        <div class="controls">
+          <div class="ctl">
+            <label for="win"><span>60-day window ending</span><output id="winOut">—</output></label>
+            <input type="range" id="win" min="0" max="100" step="1" value="100">
+            <div class="ends" aria-hidden="true"><span id="winFirst"></span><span id="winLast"></span></div>
+          </div>
+          <div class="ctl">
+            <label for="eps"><span>Filtration ε</span><output id="epsOut">—</output></label>
+            <input type="range" id="eps" min="0" max="200" step="1" value="80">
+            <div class="ends" aria-hidden="true"><span id="rhoOut"></span></div>
+          </div>
+          <button type="button" class="play" id="play" aria-pressed="false">Play year</button>
+        </div>
+        <div class="readouts">
+          <div><div class="ro-k">Components β₀</div><div class="ro-v" id="b0">—</div></div>
+          <div><div class="ro-k">Loops β₁</div><div class="ro-v" id="b1">—</div></div>
+          <div><div class="ro-k">H₁ landscape L¹</div><div class="ro-v" id="l1">—</div></div>
+          <div><div class="ro-k">Mean sector ρ</div><div class="ro-v" id="mrho">—</div></div>
+        </div>
+        <div class="attrib"><span class="mono-label">Attribution · cand. 2</span><span id="attrib">—</span></div>
+        <div class="attrib"><span class="mono-label">Regime · this window</span><span id="figRegime">—</span></div>
+        <figcaption><b>FIG. 1</b> Sector indices linked when their correlation distance is under ε, with triangles where three are mutually linked. Bars record when groups merge (H₀) and when loops open and close (H₁). Hover a bar to see what it is.</figcaption>
+        <div class="tl" id="tlWrap"><div class="chart" id="timeline"><div class="tip" id="tlTip" hidden></div></div></div>
+        <details>
+          <summary>Show the bars as a table</summary>
+          <div class="tbl-wrap"><table class="bars-tbl" id="barsTbl"></table></div>
+        </details>
+      </figure>
+    </div>
+  </section>
+
+  <section class="wrap sec" id="candidates-live">
+    <div class="sec-label mono-label">Candidates, running</div>
+    <div>
+      <h2>The seven patent candidates, as working code</h2>
+      <p class="intro">Each panel below runs on the data this machine has already downloaded, and says plainly where the prototype stops short of the claim.</p>
+      <div class="tbl-scroll">
+        <table class="data-tbl" id="candStatus"></table>
+      </div>
+
+      <section class="cand-live" id="p1">
+        <div class="cl-head"><span class="mono-label">Candidate 1</span><h3>Streaming persistent homology</h3></div>
+        <p class="cl-claim">Update only what the new session touches, instead of rebuilding the diagram, and stay inside a fixed time budget.</p>
+        <div class="panel">
+          <div class="panel-bar"><span class="mono-label">Replay the last sessions, one at a time</span><button type="button" class="chipbtn" id="p1run">Run the benchmark</button></div>
+          <div class="readouts" id="p1out"><div><div class="ro-k">Correlations, rolling</div><div class="ro-v">—</div></div><div><div class="ro-k">Correlations, rebuilt</div><div class="ro-v">—</div></div><div><div class="ro-k">Correlation speed-up</div><div class="ro-v">—</div></div><div><div class="ro-k">Sessions / second, end to end</div><div class="ro-v">—</div></div></div>
+          <p class="cl-note" id="p1note">Press run: the engine replays each session by updating rolling correlation sums in place, reuses the previous pairing whenever the edge ordering is unchanged, and falls back to a full reduction only when the order actually moves.</p>
+        </div>
+      </section>
+
+      <section class="cand-live" id="p2">
+        <div class="cl-head"><span class="mono-label">Candidate 2</span><h3>Topological regime attribution</h3></div>
+        <p class="cl-claim">When the shape changes, name the sectors and stocks that changed it, ranked.</p>
+        <div class="panel">
+          <div class="panel-bar"><span class="mono-label">Drivers of the current window vs 20 sessions earlier</span><span class="src" id="p2src">—</span></div>
+          <div class="split">
+            <div id="p2sectors"></div>
+            <div id="p2stocks"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="cand-live" id="p3">
+        <div class="cl-head"><span class="mono-label">Candidate 3</span><h3>Two-parameter regime fingerprint</h3></div>
+        <p class="cl-claim">Filter on correlation distance and a second variable at once, so a volatility squeeze and a correlation crash leave different fingerprints.</p>
+        <div class="panel">
+          <div class="panel-bar"><span class="mono-label">Correlation distance ε × realised volatility</span><span class="src" id="p3src">—</span></div>
+          <div class="bi-wrap">
+            <div><span class="mono-label">β₀ · groups</span><div class="chart" id="p3b0"><div class="tip" id="p3tip" hidden></div></div></div>
+            <div><span class="mono-label">β₁ · loops</span><div class="chart" id="p3b1"></div></div>
+          </div>
+          <p class="cl-note" id="p3note"></p>
+        </div>
+      </section>
+
+      <section class="cand-live" id="p4">
+        <div class="cl-head"><span class="mono-label">Candidate 4</span><h3>Self-calibrating pipeline</h3></div>
+        <p class="cl-claim">Pick the window length by measuring diagram stability in calm stretches, subject to a false-alarm ceiling.</p>
+        <div class="panel">
+          <div class="panel-bar"><span class="mono-label">Window sweep</span><span class="src" id="p4src">—</span></div>
+          <div class="chart" id="p4chart" style="padding:14px 16px"></div>
+          <div class="tbl-scroll"><table class="data-tbl" id="p4table"></table></div>
+          <div class="panel-bar" style="border-top:1px solid var(--rule);border-bottom:0"><span class="mono-label" id="p4pick">—</span><button type="button" class="chipbtn" id="p4apply">Run FIG. 1 at the calibrated window</button></div>
+        </div>
+      </section>
+
+      <section class="cand-live" id="p5">
+        <div class="cl-head"><span class="mono-label">Candidate 5</span><h3>Surrogate-gated drift detector</h3></div>
+        <p class="cl-claim">Only act when the signal beats a null built from surrogate data.</p>
+        <div class="panel">
+          <div class="panel-bar"><span class="mono-label">Two nulls: is there structure, and has it changed?</span><button type="button" class="chipbtn" id="p5run">Run the gate</button></div>
+          <div class="chart" id="p5chart" style="padding:14px 16px"><div class="tip" id="p5tip" hidden></div></div>
+          <div id="p5out" class="cl-note">Press run. The first null phase-randomises each sector, keeping its own volatility but destroying the links between sectors. The second resamples blocks of sessions from the previous window, so it keeps the old correlation structure and asks whether today's reading could have come from it.</div>
+        </div>
+      </section>
+
+      <section class="cand-live" id="p6">
+        <div class="cl-head"><span class="mono-label">Candidate 6</span><h3>Cross-asset contagion map</h3></div>
+        <p class="cl-claim">Track cycles as they form and dissolve across a network that spans asset classes, and see the path a shock takes.</p>
+        <div class="panel">
+          <div class="panel-bar"><span class="mono-label">Equities · G-Secs · corporate bonds · REITs · volatility</span><span class="src" id="p6src">—</span></div>
+          <div class="p6-wrap">
+            <div><span class="mono-label">The layered network now</span><div class="chart" id="p6map"><div class="tip" id="p6tip" hidden></div></div></div>
+            <div><span class="mono-label">Cross-asset coupling over time</span><div class="chart" id="p6time"></div></div>
+          </div>
+          <div class="tbl-scroll"><table class="data-tbl" id="p6loops"></table></div>
+          <p class="cl-note" id="p6note"></p>
+        </div>
+      </section>
+
+      <section class="cand-live" id="p7">
+        <div class="cl-head"><span class="mono-label">Candidate 7</span><h3>Topology of the implied-volatility surface</h3></div>
+        <p class="cl-claim">Run a sublevel-set filtration over the strike × expiry surface and read its basins.</p>
+        <div class="panel">
+          <div class="panel-bar"><span class="mono-label" id="p7head">NIFTY options</span><span class="src" id="p7src">—</span></div>
+          <div class="chart" id="p7map" style="padding:14px 16px"><div class="tip" id="p7tip" hidden></div></div>
+          <div class="split">
+            <div id="p7bars"></div>
+            <div id="p7read"></div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </section>
+
+  <section class="wrap sec" id="ask">
+    <div class="sec-label mono-label">Ask the engine</div>
+    <div>
+      <h2>Ask why, in plain English</h2>
+      <p class="intro">The engine's raw output is a barcode and a cycle. This turns it into a sentence: ask a question and it answers from the numbers on this page, naming the sectors involved.</p>
+      <div class="panel">
+        <div class="panel-bar"><span class="mono-label">Question</span><span class="src" id="askSrc">—</span></div>
+        <div class="ask-form">
+          <input type="search" id="askQ" placeholder="Why is the market in this regime today?" aria-label="Ask the engine a question">
+          <button type="button" class="btn btn-primary btn-sm" id="askGo">Ask</button>
+        </div>
+        <div class="ask-suggest" id="askSuggest"></div>
+        <div class="ask-out" id="askOut" aria-live="polite"><p class="note">Ask a question, or pick one above.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap sec" id="replay">
+    <div class="sec-label mono-label">Crash replay</div>
+    <div>
+      <h2>Watch the structure warp before the price does</h2>
+      <p class="intro">Load a historical stress episode and the figure above replays it: the same sector indices, the same filtration, day by day. Press play on the figure's window slider to animate it.</p>
+      <div class="panel">
+        <div class="panel-bar">
+          <div class="scan-bar" role="group" aria-label="Episode">
+            <button type="button" class="chipbtn" data-ep="live" aria-pressed="true">Last two years</button>
+            <button type="button" class="chipbtn" data-ep="2020">COVID crash · 2020</button>
+            <button type="button" class="chipbtn" data-ep="2018">IL&amp;FS squeeze · 2018</button>
+            <button type="button" class="chipbtn" data-ep="2013">Taper tantrum · 2013</button>
+          </div>
+          <span class="src" id="epSrc">—</span>
+        </div>
+        <div class="ep-note" id="epNote">The figure is showing the last two years of NSE sector indices. Pick an episode to replay it; NSE's index archive doesn't serve files old enough for 2008.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap sec" id="regimes">
+    <div class="sec-label mono-label">Regimes → lessons</div>
+    <div>
+      <h2>What each regime changes for a learner</h2>
+      <p class="intro">The engine's output isn't only an alert. It changes which lessons and tools Sthiti puts in front of you. The highlighted column follows FIG. 1's market state.</p>
+      <div class="regimes">
+        <div class="regime" data-reg="calm"><h3>Calm <span class="now-tag">FIG. 1 now</span></h3><dl><dt>What the engine sees</dt><dd>Distinct sector groups and stable loops; correlations are moderate.</dd><dt>What Sthiti surfaces</dt><dd>Fundamentals and chart patterns behave as taught. The scanner runs normally.</dd></dl><a href="#tools/t-screen">Stock health scorecard →</a></div>
+        <div class="regime" data-reg="trans"><h3>Transitional <span class="now-tag">FIG. 1 now</span></h3><dl><dt>What the engine sees</dt><dd>Loops thinning and groups merging earlier as correlations rise.</dd><dt>What Sthiti surfaces</dt><dd>Tighter stops, a breadth check, and confirmation before trusting a breakout.</dd></dl><a href="#tools/t-position">Position calculator →</a></div>
+        <div class="regime" data-reg="stress"><h3>Stress <span class="now-tag">FIG. 1 now</span></h3><dl><dt>What the engine sees</dt><dd>Correlations converge and the structure collapses into one blob.</dd><dt>What Sthiti surfaces</dt><dd>Smaller positions, hedging with options, and the psychology lesson on panic selling.</dd></dl><a href="#tools/t-options">Option simulator →</a></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap sec" id="system">
+    <div class="sec-label mono-label">System</div>
+    <div>
+      <h2>Seven claims, one engine</h2>
+      <p class="intro">The patent candidates fit together as a single pipeline, from the NSE feed to a hedge or a lesson. One way to file: claim the whole system, then claim each module in its own right.</p>
+      <div class="engine" role="list" aria-label="FIG. 9, proposed system">
+        <div class="aux tune" role="listitem"><span class="mono-label">Candidate 4 · wraps these three</span><b>Self-calibration</b> tunes window, embedding, delay and threshold per market, and re-tunes on drift.</div>
+        <div class="stage in e-feed" role="listitem"><span class="mono-label">Input</span><b>NSE market feed</b><p>Ticks and bars across NIFTY 500, F&amp;O, INR and G-secs</p></div>
+        <div class="stage e-s1" role="listitem"><span class="mono-label">Candidate 1</span><b><a href="#engine/c1">Streaming complex</a></b><p>Update only the simplices each tick touches</p></div>
+        <div class="stage e-s3" role="listitem"><span class="mono-label">Candidate 3</span><b><a href="#engine/c3">Regime fingerprint</a></b><p>Correlation × liquidity bifiltration</p></div>
+        <div class="stage e-s5" role="listitem"><span class="mono-label">Candidate 5</span><b><a href="#engine/c5">Surrogate gate</a></b><p>Fire only if the signal beats the null</p></div>
+        <div class="stage e-s2" role="listitem"><span class="mono-label">Candidate 2</span><b><a href="#engine/c2">Attribution report</a></b><p>Ranked assets and sectors behind the shift</p></div>
+        <div class="stage out e-act" role="listitem"><span class="mono-label">Output</span><b>Action &amp; lesson</b><p>Hedge, limits, retrain, or the lesson that fits the new state</p></div>
+        <div class="aux iv" role="listitem"><span class="mono-label">Candidate 7 · feeds the fingerprint</span><b>IV-surface monitor</b> adds a derivatives signal that may lead the cash market.</div>
+        <div class="aux zz" role="listitem"><span class="mono-label">Candidate 6 · feeds the report</span><b>Contagion map</b> traces the shock across equities, bonds, FX, commodities and crypto.</div>
+      </div>
+      <p class="engine-note"><span class="mono-label">FIG. 9</span> Proposed system. Solid boxes run in sequence on every update; blue dashed boxes tune or feed them.</p>
+    </div>
+  </section>
+
+
+
+  <section class="wrap sec" id="candidates">
+    <div class="sec-label mono-label">Patent candidates</div>
+    <div>
+      <h2>Seven patent candidates</h2>
+      <p class="intro">Numbered as in the brief: 1 is the strongest candidate under Indian law, 7 the least certain on novelty. Figures are drawn in patent style, with reference numerals.</p>
+      <div class="cands">
+        <article class="cand" id="c1">
+          <div class="cand-num">1</div>
+          <div>
+            <h3>Streaming persistent homology engine</h3>
+            <span class="standing strong">Strongest candidate</span>
+            <p class="claim"><span class="mono-label">Claim sketch</span>When each new bar or tick arrives, update only the simplices it affects instead of rebuilding the diagram, and emit a regime alert within a bounded time and memory budget.</p>
+            <p class="why">Recomputing every window from scratch can't keep up with hundreds of assets at intraday frequency.</p>
+            <dl class="meta">
+              <dt class="mono-label">Closes</dt><dd><ul class="chips" data-cand="1"></ul></dd>
+              <dt class="mono-label">Novelty watch</dt><dd>Vineyard-style updating already exists in pure mathematics, so the novelty has to sit in the specific finance pipeline and architecture. Lower latency and memory use is a clear technical effect, which is what Indian law looks for.</dd>
+            </dl>
+          </div>
+          <figure class="cand-fig">
+            <svg class="pf" viewBox="0 0 240 160" role="img" aria-label="A price series with a sliding window; a new tick updates one triangle in the complex above">
+              <path class="ln" d="M40 56 L78 30 L108 62 Z"/>
+              <path class="ln" d="M108 62 L150 38"/>
+              <path class="acf" d="M150 38 L196 60 L108 62 Z"/>
+              <circle class="dot" cx="40" cy="56" r="3"/><circle class="dot" cx="78" cy="30" r="3"/><circle class="dot" cx="108" cy="62" r="3"/><circle class="dot" cx="150" cy="38" r="3"/><circle class="dot" cx="196" cy="60" r="3"/>
+              <polyline class="ln" points="12,134 28,126 44,130 60,118 76,123 92,112 108,119 124,106 140,113 156,100 172,108 188,97 204,104 220,92"/>
+              <rect class="lt" x="120" y="84" width="92" height="58"/>
+              <path class="acd" d="M220 86 Q224 70 200 66"/>
+              <circle class="adot" cx="220" cy="92" r="4"/>
+              <path class="ld" d="M108 150 L120 142"/><text class="ref" x="88" y="156">210</text>
+              <path class="ld" d="M228 104 L223 97"/><text class="ref" x="222" y="115">212</text>
+              <path class="ld" d="M206 30 L178 46"/><text class="ref" x="208" y="30">214</text>
+            </svg>
+            <figcaption><b>FIG. 2</b> A new tick (212) updates one simplex (214) inside the sliding window (210).</figcaption>
+          </figure>
+        </article>
+
+        <article class="cand" id="c2">
+          <div class="cand-num">2</div>
+          <div>
+            <h3>Topological regime attribution</h3>
+            <span class="standing strong">Nothing comparable found</span>
+            <p class="claim"><span class="mono-label">Claim sketch</span>When a shift is detected, extract the representative cycles and components that caused it, map them back to individual assets and sectors, and output a ranked “who drove this shift” report.</p>
+            <p class="why">“The landscape norm spiked” gives a portfolio manager nothing to act on. A ranked list of stocks and sectors does. FIG. 1 runs a toy version: the saffron loop is a representative cycle, read out by sector.</p>
+            <dl class="meta">
+              <dt class="mono-label">Closes</dt><dd><ul class="chips" data-cand="2"></ul></dd>
+              <dt class="mono-label">Novelty watch</dt><dd>Representative cycles are standard TDA output. The claim is the mapping back to assets and the ranking built on it.</dd>
+            </dl>
+          </div>
+          <figure class="cand-fig">
+            <svg class="pf" viewBox="0 0 240 160" role="img" aria-label="A loop through five sector nodes feeding a ranked bar list">
+              <path class="ln" d="M92 106 L128 120 L142 98"/>
+              <path class="ac" d="M66 32 L106 60 L92 106 L40 106 L26 60 Z"/>
+              <circle class="dot" cx="66" cy="32" r="3"/><circle class="dot" cx="106" cy="60" r="3"/><circle class="dot" cx="92" cy="106" r="3"/><circle class="dot" cx="40" cy="106" r="3"/><circle class="dot" cx="26" cy="60" r="3"/><circle class="dot" cx="128" cy="120" r="3"/><circle class="dot" cx="142" cy="98" r="3"/>
+              <text class="lab" x="66" y="22" text-anchor="middle">BNK</text>
+              <text class="lab" x="112" y="56">RLT</text>
+              <text class="lab" x="20" y="56" text-anchor="end">AUT</text>
+              <text class="lab" x="40" y="121" text-anchor="middle">MTL</text>
+              <text class="lab" x="92" y="121" text-anchor="middle">ENG</text>
+              <path class="ln" d="M122 76 L148 76 M143 72 L148 76 L143 80"/>
+              <text class="lab" x="156" y="47">BNK</text><rect class="bar" x="178" y="40" width="54" height="8" rx="1.5"/>
+              <text class="lab" x="156" y="65">AUT</text><rect class="bar" x="178" y="58" width="40" height="8" rx="1.5"/>
+              <text class="lab" x="156" y="83">MTL</text><rect class="bar" x="178" y="76" width="28" height="8" rx="1.5"/>
+              <text class="lab" x="156" y="101">RLT</text><rect class="bar" x="178" y="94" width="16" height="8" rx="1.5"/>
+              <path class="ld" d="M22 138 L32 116"/><text class="ref" x="10" y="150">310</text>
+              <path class="ld" d="M214 116 L198 104"/><text class="ref" x="208" y="128">312</text>
+            </svg>
+            <figcaption><b>FIG. 3</b> The representative cycle (310) is mapped to sectors and ranked in the report (312).</figcaption>
+          </figure>
+        </article>
+
+        <article class="cand" id="c3">
+          <div class="cand-num">3</div>
+          <div>
+            <h3>Two-parameter regime fingerprint</h3>
+            <p class="claim"><span class="mono-label">Claim sketch</span>Build a bifiltration on correlation distance crossed with a liquidity or stress variable, such as bid-ask spread or realized volatility, and define each regime as a region in the resulting multiparameter invariant.</p>
+            <p class="why">A liquidity crunch and a correlation crash would finally look different. Single-parameter methods can't tell them apart.</p>
+            <dl class="meta">
+              <dt class="mono-label">Closes</dt><dd><ul class="chips" data-cand="3"></ul></dd>
+              <dt class="mono-label">Novelty watch</dt><dd>Multiparameter persistence has no simple, complete invariant. The claim has to fix a computable one and show that it separates regimes.</dd>
+            </dl>
+          </div>
+          <figure class="cand-fig">
+            <svg class="pf" viewBox="0 0 240 160" role="img" aria-label="Two regime regions in a correlation-distance by spread plane">
+              <path class="inf" d="M31 22 L31 72 L72 72 L72 52 L112 52 L112 22 Z"/>
+              <path class="acf" d="M31 131 L31 112 L124 112 L124 94 L186 94 L186 131 Z"/>
+              <path class="ln" d="M30 16 L30 132 L228 132"/>
+              <path class="ln" d="M26 21 L30 16 L34 21 M223 128 L228 132 L223 136"/>
+              <text class="lab" x="36" y="12">spread / RV</text>
+              <text class="lab" x="228" y="148" text-anchor="end">correlation distance</text>
+              <text class="lab" x="52" y="45" text-anchor="middle">A</text>
+              <text class="lab" x="76" y="125" text-anchor="middle">B</text>
+              <path class="ld" d="M138 34 L114 40"/><text class="ref" x="140" y="37">410</text>
+              <path class="ld" d="M204 86 L188 100"/><text class="ref" x="206" y="86">412</text>
+            </svg>
+            <figcaption><b>FIG. 4</b> Regimes as regions of the bifiltration: a liquidity crunch (410) and a correlation crash (412).</figcaption>
+          </figure>
+        </article>
+
+        <article class="cand" id="c4">
+          <div class="cand-num">4</div>
+          <div>
+            <h3>Self-calibrating TDA pipeline</h3>
+            <p class="claim"><span class="mono-label">Claim sketch</span>Automatically choose window length, embedding dimension, delay and threshold for each market by maximizing diagram stability on calm periods while holding the false-alarm rate below a target, and re-tune when the data's character changes.</p>
+            <p class="why">Every early-warning paper admits its results depend on these parameters. Nobody offers automatic, market-specific calibration.</p>
+            <dl class="meta">
+              <dt class="mono-label">Closes</dt><dd><ul class="chips" data-cand="4"></ul></dd>
+              <dt class="mono-label">Novelty watch</dt><dd>Generic hyperparameter search won't carry a claim. The stability objective, the false-alarm constraint and the drift-triggered re-tune, taken together, might.</dd>
+            </dl>
+          </div>
+          <figure class="cand-fig">
+            <svg class="pf" viewBox="0 0 240 160" role="img" aria-label="Stability against window length, with the chosen window at the peak and a re-tune loop">
+              <path class="ln" d="M28 16 L28 132 L228 132"/>
+              <path class="ln" d="M24 21 L28 16 L32 21 M223 128 L228 132 L223 136"/>
+              <text class="lab" x="34" y="12">stability</text>
+              <text class="lab" x="228" y="148" text-anchor="end">window length</text>
+              <path class="ln" d="M34 122 C64 116 88 44 120 42 C150 40 176 88 222 108"/>
+              <path class="acd" d="M120 132 L120 48"/>
+              <circle class="adot" cx="120" cy="42" r="4"/>
+              <text class="lab" x="125" y="126">w*</text>
+              <path class="ln" d="M204 36 A11 11 0 1 1 193 25"/>
+              <path class="ln" d="M188 21 L193 25 L188 29"/>
+              <text class="lab" x="196" y="60" text-anchor="middle">re-tune</text>
+              <path class="ld" d="M170 70 L158 61"/><text class="ref" x="170" y="79">510</text>
+              <path class="ld" d="M104 142 L117 134"/><text class="ref" x="84" y="150">512</text>
+              <path class="ld" d="M220 22 L210 27"/><text class="ref" x="214" y="18">514</text>
+            </svg>
+            <figcaption><b>FIG. 5</b> The stability curve (510) sets the window w* (512); drift in the data triggers a re-tune (514).</figcaption>
+          </figure>
+        </article>
+
+        <article class="cand" id="c5">
+          <div class="cand-num">5</div>
+          <div>
+            <h3>Topological drift detector for AI trading models</h3>
+            <p class="claim"><span class="mono-label">Claim sketch</span>Test each topological signal against surrogate null data, such as phase-randomized series, and only when it beats the null, trigger retraining, de-risking or margin changes.</p>
+            <p class="why">Practitioners treat detecting shifts in market behaviour as central to model governance, because it signals when a machine learning model needs retraining. This turns a signal into a controlled action.</p>
+            <dl class="meta">
+              <dt class="mono-label">Closes</dt><dd><ul class="chips" data-cand="5"></ul></dd>
+              <dt class="mono-label">Novelty watch</dt><dd>Surrogate testing is established in nonlinear time-series analysis. The claim is the gate between a topological test and a risk action.</dd>
+            </dl>
+          </div>
+          <figure class="cand-fig">
+            <svg class="pf" viewBox="0 0 240 160" role="img" aria-label="Histogram of surrogate statistics with the observed value beyond the 95th percentile, triggering a retrain">
+              <rect class="hist" x="20" y="122" width="10" height="6"/><rect class="hist" x="32" y="115" width="10" height="13"/><rect class="hist" x="44" y="104" width="10" height="24"/><rect class="hist" x="56" y="91" width="10" height="37"/><rect class="hist" x="68" y="78" width="10" height="50"/><rect class="hist" x="80" y="72" width="10" height="56"/><rect class="hist" x="92" y="79" width="10" height="49"/><rect class="hist" x="104" y="92" width="10" height="36"/><rect class="hist" x="116" y="105" width="10" height="23"/><rect class="hist" x="128" y="116" width="10" height="12"/><rect class="hist" x="140" y="123" width="10" height="5"/>
+              <path class="ln" d="M14 128 L230 128"/>
+              <path class="lt" d="M152 128 L152 58"/>
+              <text class="lab" x="152" y="52" text-anchor="middle">95%</text>
+              <path class="ac" d="M186 128 L186 64"/>
+              <circle class="adot" cx="186" cy="62" r="4"/>
+              <text class="lab" x="186" y="142" text-anchor="middle">observed</text>
+              <rect class="ln" x="162" y="10" width="68" height="22" rx="2"/>
+              <text class="lab" x="196" y="24" text-anchor="middle">retrain</text>
+              <path class="ac" d="M188 56 L194 36 M189 39 L194 35 L197 40"/>
+              <path class="ld" d="M40 142 L56 118"/><text class="ref" x="26" y="152">610</text>
+              <path class="ld" d="M214 82 L190 72"/><text class="ref" x="214" y="90">612</text>
+              <path class="ld" d="M150 20 L161 20"/><text class="ref" x="128" y="24">614</text>
+            </svg>
+            <figcaption><b>FIG. 6</b> The observed statistic (612) clears the surrogate null (610) and opens the action gate (614).</figcaption>
+          </figure>
+        </article>
+
+        <article class="cand" id="c6">
+          <div class="cand-num">6</div>
+          <div>
+            <h3>Cross-asset contagion map with zigzag persistence</h3>
+            <p class="claim"><span class="mono-label">Claim sketch</span>Track cycles as they form and dissolve across a multilayer network linking equities, bonds, FX, commodities and crypto over time, and identify the pathway a shock is taking.</p>
+            <p class="why">Zigzag persistence has revealed structure in temporal graphs that standard centrality statistics miss. The published examples are transport networks, not financial contagion.</p>
+            <dl class="meta">
+              <dt class="mono-label">Closes</dt><dd><ul class="chips" data-cand="6"></ul></dd>
+              <dt class="mono-label">Novelty watch</dt><dd>Zigzag persistence itself is known. Applying it to cross-asset contagion paths looks unexplored.</dd>
+            </dl>
+          </div>
+          <figure class="cand-fig">
+            <svg class="pf" viewBox="0 0 240 160" role="img" aria-label="Three network layers at successive times with a shock path crossing them">
+              <path class="ln" d="M18 42 L70 26 L70 118 L18 134 Z"/>
+              <path class="ln" d="M92 42 L144 26 L144 118 L92 134 Z"/>
+              <path class="ln" d="M166 42 L218 26 L218 118 L166 134 Z"/>
+              <path class="lt" d="M32 62 L54 50 M32 62 L40 96 M40 96 L58 106"/>
+              <path class="lt" d="M106 62 L128 50 M114 92 L132 104 M106 62 L114 92"/>
+              <path class="lt" d="M180 62 L202 50 M188 94 L206 104 M202 50 L206 104"/>
+              <circle class="dot" cx="54" cy="50" r="2.6"/><circle class="dot" cx="40" cy="96" r="2.6"/><circle class="dot" cx="58" cy="106" r="2.6"/>
+              <circle class="dot" cx="106" cy="62" r="2.6"/><circle class="dot" cx="128" cy="50" r="2.6"/><circle class="dot" cx="132" cy="104" r="2.6"/>
+              <circle class="dot" cx="180" cy="62" r="2.6"/><circle class="dot" cx="202" cy="50" r="2.6"/><circle class="dot" cx="188" cy="94" r="2.6"/>
+              <path class="ac" d="M32 62 L114 92 L206 104"/>
+              <circle class="adot" cx="32" cy="62" r="3.6"/><circle class="adot" cx="114" cy="92" r="3.6"/><circle class="adot" cx="206" cy="104" r="3.6"/>
+              <text class="lab" x="30" y="78" text-anchor="middle">EQ</text>
+              <text class="lab" x="104" y="108" text-anchor="middle">FX</text>
+              <text class="lab" x="200" y="122" text-anchor="middle">BOND</text>
+              <text class="lab" x="44" y="150" text-anchor="middle">t</text>
+              <text class="lab" x="118" y="150" text-anchor="middle">t+1</text>
+              <text class="lab" x="192" y="150" text-anchor="middle">t+2</text>
+              <path class="ld" d="M78 18 L66 28"/><text class="ref" x="80" y="18">710</text>
+              <path class="ld" d="M150 76 L160 96"/><text class="ref" x="142" y="72">712</text>
+            </svg>
+            <figcaption><b>FIG. 7</b> Network layers (710) at successive times; the shock's path (712) runs from equities through FX to bonds.</figcaption>
+          </figure>
+        </article>
+
+        <article class="cand" id="c7">
+          <div class="cand-num">7</div>
+          <div>
+            <h3>Topology of the options implied-volatility surface</h3>
+            <span class="standing caution">Least certain · search hardest</span>
+            <p class="claim"><span class="mono-label">Claim sketch</span>Apply a sublevel-set filtration over the strike × expiry implied-volatility surface and detect regime shifts in derivatives before the cash market reacts.</p>
+            <p class="why">NSE's huge options volume makes this a natural fit for Indian data.</p>
+            <dl class="meta">
+              <dt class="mono-label">Closes</dt><dd><ul class="chips" data-cand="7"></ul></dd>
+              <dt class="mono-label">Novelty watch</dt><dd>The least certain novelty in the set. Run the hardest search here before spending on drafting.</dd>
+            </dl>
+          </div>
+          <figure class="cand-fig">
+            <svg class="pf" viewBox="0 0 240 160" role="img" aria-label="Contour map of an implied volatility surface with two sublevel-set basins shaded">
+              <rect class="ln" x="26" y="16" width="202" height="114"/>
+              <ellipse class="ln" cx="116" cy="84" rx="82" ry="36"/>
+              <ellipse class="ln" cx="116" cy="84" rx="60" ry="26"/>
+              <ellipse class="acf" cx="116" cy="84" rx="38" ry="16"/>
+              <ellipse class="acf" cx="116" cy="84" rx="17" ry="7"/>
+              <ellipse class="ln" cx="190" cy="38" rx="24" ry="12"/>
+              <ellipse class="acf" cx="190" cy="38" rx="11" ry="5.5"/>
+              <text class="lab" x="228" y="146" text-anchor="end">strike</text>
+              <text class="lab" x="26" y="11">expiry</text>
+              <path class="ld" d="M40 144 L50 106"/><text class="ref" x="30" y="154">810</text>
+              <path class="ld" d="M212 72 L196 44"/><text class="ref" x="204" y="82">812</text>
+            </svg>
+            <figcaption><b>FIG. 8</b> Contours of the strike × expiry IV surface (810); the sublevel set (812) splits into two basins.</figcaption>
+          </figure>
+        </article>
+      </div>
+
+    </div>
+  </section>
+</div>
+
+
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p><b>Sthiti</b> · concept build, September 2026. Educational concept, not investment, legal or tax advice. Data read from NSE and BSE public endpoints for this demo; a product would need a licensed feed.</p>
+    <nav aria-label="Footer"><a href="#home">Home</a><a href="#learn">Learn</a><a href="#tools">Tools</a><a href="#engine">Regime engine</a></nav>
+  </div>
+</footer>
+
+<script src="/vendor/gsap.min.js"></script>
+<script src="/vendor/ScrollTrigger.min.js"></script>
+<script src="/vendor/lenis.min.js"></script>
+<script src="/curriculum.js"></script>
+<script src="/app.js"></script>
+<script src="/motion.js"></script>
+</body>
+</html>

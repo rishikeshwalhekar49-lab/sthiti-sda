@@ -1,0 +1,427 @@
+/* Sthiti curriculum: three stages, twelve lessons, fixed questions.
+   Nothing here changes with the market — the numbers a learner sees move, the lessons don't. */
+const CURRICULUM = [
+  {
+    stage: 1,
+    name: 'Basics',
+    blurb: 'What a share is, how to read a price, and what the market as a whole is doing. No charts, no jargon, nothing to trade yet.',
+    mins: 25,
+    modules: [
+      {
+        id: 'b1',
+        title: 'What you actually own',
+        mins: 6,
+        can: 'Explain what a share is, where it trades, and what is needed to hold one.',
+        body: [
+          'A share is a slice of a company. Buy one share of a company that has issued one crore shares and you own one crore-th of it: the same fraction of its profits, its debts and its votes. Nothing about the company changes when you buy — you are buying the slice from another investor, not from the company.',
+          'In India those trades happen on two exchanges, the NSE and the BSE. The same company is usually listed on both, under a ticker: TCS, INFY, HDFCBANK. Prices on the two exchanges track each other closely because traders arbitrage any gap away within seconds.',
+          'To hold shares you need a demat account, which holds them electronically, and a broker, who routes your order to the exchange. When you buy, the shares reach your demat account the next working day: India settles trades on a T+1 cycle, one of the fastest in the world.',
+          'One number matters more than the share price: market capitalisation, which is the share price multiplied by every share in issue. That is what the market thinks the whole company is worth, and it is what decides whether a company counts as large, mid or small cap.',
+        ],
+        terms: [
+          ['Share', 'A unit of ownership in a company.'],
+          ['Demat account', 'The electronic account that holds your shares.'],
+          ['Ticker', 'The short code a stock trades under, like RELIANCE.'],
+          ['Market cap', 'Share price × all shares issued: the value of the whole company.'],
+          ['T+1', 'Shares and money settle one working day after the trade.'],
+        ],
+        practise: { href: '#tools/t-screen', label: 'Open the screener and look at the market-cap column' },
+        quiz: [
+          {
+            q: 'A company has one crore shares in issue. You buy ten of them. What do you own?',
+            opts: ['One crore-th of the company, ten times over', 'Ten percent of the company', 'A loan to the company that it must repay'],
+            a: 0,
+            why: 'Ten shares out of one crore is ten crore-ths of the company. Shares are ownership, not a loan — nobody owes you the money back.',
+          },
+          {
+            q: 'Which number tells you how big a company is?',
+            opts: ['Its share price', 'Its market capitalisation', 'The number of shares it has issued'],
+            a: 1,
+            why: 'Price alone means nothing: a ₹3,000 share of a small company is worth far less in total than a ₹90 share of a giant. Market cap multiplies the two together.',
+          },
+        ],
+      },
+      {
+        id: 'b2',
+        title: 'Reading a price without being fooled',
+        mins: 6,
+        can: 'Read a quote — last price, day change, range and volume — and say what each part does and does not tell you.',
+        body: [
+          'A quote is a handful of numbers. The last traded price is what somebody paid a moment ago, not what the share is worth. The day change compares it with yesterday’s close. The 52-week high and low show the span of the last year, which tells you where today sits in the stock’s own recent history.',
+          'Volume is the number of shares that changed hands. On its own it says nothing about direction, but it says a lot about conviction: a move on three times the usual volume has more people behind it than the same move on a quiet day.',
+          'The trap every beginner falls into is reading the price level as cheap or expensive. A ₹300 share is not cheaper than a ₹3,000 one. What matters is what you get for the money — the earnings, the assets, the growth — which is the next lesson.',
+          'One more habit worth building early: check whether a price is live or a closing price. Outside 9:15 to 15:30 on a weekday, every Indian quote you see is yesterday’s close, however current the page looks.',
+        ],
+        terms: [
+          ['Last traded price', 'The price of the most recent trade.'],
+          ['52-week range', 'The highest and lowest price of the past year.'],
+          ['Volume', 'How many shares traded in the session.'],
+          ['Close', 'The final price of the trading day, 15:30 IST.'],
+        ],
+        practise: { href: '#tools/t-chart', label: 'Open a chart and hover a few days to read their prices' },
+        quiz: [
+          {
+            q: 'Stock A trades at ₹3,000 and stock B at ₹300. Which is cheaper?',
+            opts: ['B, because each share costs less', 'A, because higher prices mean quality', 'You cannot tell from the price alone'],
+            a: 2,
+            why: 'Cheapness is price against what the business earns or owns. The share price on its own carries none of that.',
+          },
+          {
+            q: 'A stock rises 4% on volume three times its usual level. What does the volume add?',
+            opts: ['It confirms the price will keep rising', 'It shows the move had unusually broad participation', 'It means the company released results'],
+            a: 1,
+            why: 'Volume measures participation, not direction and not the future. Heavy volume says many people acted; it does not say they were right.',
+          },
+        ],
+      },
+      {
+        id: 'b3',
+        title: 'What makes a business worth something',
+        mins: 7,
+        can: 'Use earnings, P/E, ROE and margins to judge a company against its sector instead of guessing.',
+        body: [
+          'Start with earnings per share: the company’s annual profit divided by its shares. If a company earns ₹100 crore and has 10 crore shares, each share earned ₹10. That is the engine under the price.',
+          'The price-to-earnings ratio divides the share price by that figure. At ₹250 with ₹10 of earnings, the P/E is 25: you are paying ₹25 for every ₹1 the company earns in a year. A high P/E is not automatically bad — investors pay up for growth — but it is a promise the company then has to keep.',
+          'A P/E only means something next to a comparison. NSE publishes a P/E for every index, so an IT company can be measured against the Nifty IT index rather than against a bank, which is a completely different business.',
+          'Two more numbers finish the picture. Return on equity is the profit earned on each rupee shareholders have put in; courses treat 15% and above as strong. Net margin is the share of revenue that survives as profit. Together they separate a business that compounds from one that merely turns over money.',
+        ],
+        terms: [
+          ['EPS', 'Annual profit divided by the number of shares.'],
+          ['P/E ratio', 'Price ÷ earnings per share: rupees paid per rupee earned.'],
+          ['ROE', 'Profit as a percentage of shareholders’ money.'],
+          ['Net margin', 'Profit as a percentage of revenue.'],
+          ['Sector P/E', 'The same ratio for a whole index, used as the yardstick.'],
+        ],
+        practise: { href: '#tools/t-screen', label: 'Tap a P/E in the screener and read the scorecard beside it' },
+        quiz: [
+          {
+            q: 'A share trades at ₹600 and earned ₹20 per share last year. What is its P/E, and what does it mean?',
+            opts: ['30 — you pay ₹30 for each ₹1 of annual earnings', '30% — the company returns 30% a year', '3 — the share will triple'],
+            a: 0,
+            why: '600 ÷ 20 = 30. The P/E is a price per rupee of earnings, not a return and not a forecast.',
+          },
+          {
+            q: 'Two companies both have a P/E of 40. One is in an industry whose index trades at 45, the other in one at 18. What does that tell you?',
+            opts: ['Both are equally expensive', 'The first is priced in line with its peers, the second well above them', 'The second company is better run'],
+            a: 1,
+            why: 'A P/E only means something against a comparison. The same 40 is ordinary in one sector and a big premium in another.',
+          },
+        ],
+      },
+      {
+        id: 'b4',
+        title: 'The market’s mood in four numbers',
+        mins: 6,
+        can: 'Read the index, market breadth, institutional flows and India VIX, and say what mood they describe.',
+        body: [
+          'The NIFTY 50 tells you what fifty large companies did, weighted by size. It is a summary, and summaries hide things: the index can rise while most shares fall, because a handful of heavyweights carried it.',
+          'That is what breadth catches. The advance/decline ratio counts how many shares rose against how many fell. Below 1, more shares fell than rose, whatever the index did. It is the quickest check on whether a move is broad or narrow.',
+          'Flows say who was buying. NSE publishes daily net figures for foreign institutional investors and domestic ones — mutual funds, insurers. When FIIs sell and DIIs buy, the two are taking opposite sides, and the balance between them often sets the tone for weeks.',
+          'India VIX is the market’s expected volatility over the next month, implied by option prices. Low means traders expect calm, which is also when complacency creeps in. High means they are paying up for protection. It is a measure of expected movement, not of direction.',
+        ],
+        terms: [
+          ['NIFTY 50', 'Index of fifty large NSE-listed companies.'],
+          ['Advance/decline', 'Shares that rose ÷ shares that fell.'],
+          ['FII / DII', 'Foreign and domestic institutional investors.'],
+          ['India VIX', 'Expected volatility over the next 30 days, from option prices.'],
+        ],
+        practise: { href: '#tools/t-mood', label: 'Open the mood meter and read today’s four numbers' },
+        quiz: [
+          {
+            q: 'The NIFTY 50 closes up 0.5%, but the advance/decline ratio is 0.6. What happened?',
+            opts: ['A data error: they cannot disagree', 'More shares fell than rose; a few large ones lifted the index', 'The market was closed for part of the day'],
+            a: 1,
+            why: 'The index is weighted by company size. A handful of heavyweights can carry it while most of the market slips. That is exactly what breadth is for.',
+          },
+          {
+            q: 'India VIX jumps from 11 to 19. What does that say?',
+            opts: ['The market will fall', 'Traders expect bigger swings and options have become more expensive', 'Foreign investors are selling'],
+            a: 1,
+            why: 'VIX measures expected movement in either direction, and it is derived from option prices, so a higher VIX means costlier options — not a forecast of direction.',
+          },
+        ],
+      },
+    ],
+  },
+  {
+    stage: 2,
+    name: 'Method',
+    blurb: 'Trend, momentum, and the arithmetic of risk. This stage turns opinions into a rule you can repeat and check.',
+    mins: 28,
+    modules: [
+      {
+        id: 'm1',
+        title: 'Trend: the moving average',
+        mins: 7,
+        can: 'Use the 50-day and 200-day averages as context, and recognise a golden or death cross.',
+        body: [
+          'A moving average is the mean of the last N closing prices, recalculated each day. The 50-day average is roughly the last ten trading weeks; the 200-day is about a year. Both smooth out daily noise so the direction underneath shows.',
+          'Courses use them as context rather than signals. Price above its 200-day average is a market in a long uptrend; below it, a long downtrend. Most trend-following rules simply refuse to buy below it.',
+          'When the 50-day average crosses above the 200-day, that is a golden cross; the opposite is a death cross. Both are slow by construction — an average of a year of prices cannot turn quickly — so they confirm a change that has already happened rather than predicting one.',
+          'The catch is the sideways market. In a range, price crosses its averages constantly and every cross is a false alarm. Averages earn their keep in trends, which is why the next lessons pair them with momentum and with the regime the market is in.',
+        ],
+        terms: [
+          ['Moving average', 'The mean of the last N closes, recalculated daily.'],
+          ['200-DMA', 'The 200-day moving average, the usual long-term line.'],
+          ['Golden cross', '50-day average crossing above the 200-day.'],
+          ['Death cross', '50-day average crossing below the 200-day.'],
+        ],
+        practise: { href: '#tools/t-scanner', label: 'Run the scanner’s moving-average filter and see today’s crosses' },
+        quiz: [
+          {
+            q: 'A stock closes above its 200-day moving average for the first time in months. What has that told you?',
+            opts: ['Prices recently have been higher than the last year’s average — a long downtrend has turned', 'The stock will rise for the next year', 'The company’s earnings have improved'],
+            a: 0,
+            why: 'A moving average is arithmetic on past prices. It describes what has happened, and says nothing about earnings or the future.',
+          },
+          {
+            q: 'Why do moving-average crosses produce so many false signals in a sideways market?',
+            opts: ['The calculation breaks down', 'Price keeps oscillating around the average, so it crosses repeatedly with no trend behind it', 'Volume is always low'],
+            a: 1,
+            why: 'Averages are trend tools. Without a trend, price wanders back and forth across the line and each crossing means nothing.',
+          },
+        ],
+      },
+      {
+        id: 'm2',
+        title: 'Momentum: RSI and its trap',
+        mins: 6,
+        can: 'Read an RSI value, and explain why "overbought" does not mean "about to fall".',
+        body: [
+          'The relative strength index compares the size of recent gains with recent losses over 14 sessions and scales the result between 0 and 100. Above 70 is the classic overbought line, below 30 the oversold one.',
+          'In a range-bound market that works well: price stretches, RSI hits an extreme, price snaps back. Most textbook examples are drawn from exactly this kind of market.',
+          'The trap is a strong trend. A stock in a powerful run can hold RSI above 70 for weeks, and selling on the first reading above 70 means selling at the start of the move. The same is true in reverse: falling stocks stay oversold.',
+          'So courses treat RSI as a warning that a move is stretched, not as an instruction — and they check the trend first. Which reading to trust depends on what kind of market you are in, and that is what the regime lessons in Stage 3 are about.',
+        ],
+        terms: [
+          ['RSI (14)', 'Momentum over 14 sessions, scaled 0 to 100.'],
+          ['Overbought', 'RSI above 70: gains have dominated recently.'],
+          ['Oversold', 'RSI below 30: losses have dominated recently.'],
+        ],
+        practise: { href: '#tools/t-chart', label: 'Open the chart and find the shaded RSI extremes' },
+        quiz: [
+          {
+            q: 'A stock in a strong uptrend has an RSI of 78. What is the sound reading?',
+            opts: ['Sell immediately: it must fall', 'The move is stretched; in a trend RSI can hold above 70 for weeks, so it is a warning, not a signal', 'RSI is broken above 70'],
+            a: 1,
+            why: 'Extremes persist in trends. Treating the first reading above 70 as a sell means exiting at the start of the strongest moves.',
+          },
+          {
+            q: 'What does RSI actually measure?',
+            opts: ['The size of recent gains against recent losses', 'How many investors are buying', 'Whether the stock is cheap'],
+            a: 0,
+            why: 'RSI is arithmetic on recent price changes only. It knows nothing about who is trading or what the company is worth.',
+          },
+        ],
+      },
+      {
+        id: 'm3',
+        title: 'Risk first: position size and the stop',
+        mins: 8,
+        can: 'Size a position from your capital and the stock’s volatility, and place a stop that reflects it.',
+        body: [
+          'Most beginners decide what to buy and then how much. Professionals reverse it: decide what you can lose, and let that decide the size. The common rule is 1% of capital at risk per trade. On ₹2,00,000 that is ₹2,000.',
+          'Next comes the stop — the price at which you accept the idea was wrong. Put it too close and ordinary noise removes you; too far and one trade costs too much. A volatility-based stop solves this: place it a multiple of the average true range below your entry, so a jumpy stock gets more room and a calm one less.',
+          'Now the size follows arithmetic. If your stop sits ₹20 below entry and you can lose ₹2,000, you buy 100 shares. Nothing about conviction enters the calculation.',
+          'This is also why volatility changes your position size without you changing your mind. If ATR doubles, the same rupee risk buys half as many shares. Sizing down in a volatile market is not caution, it is the same rule doing its job.',
+        ],
+        terms: [
+          ['Position sizing', 'Deciding how many shares from the risk you accept.'],
+          ['Stop-loss', 'The exit price that caps the loss on a trade.'],
+          ['ATR', 'Average true range: typical daily movement, in rupees.'],
+          ['R', 'One unit of risk — the distance from entry to stop.'],
+        ],
+        practise: { href: '#tools/t-position', label: 'Size a trade in the position calculator' },
+        quiz: [
+          {
+            q: 'You have ₹2,00,000, risk 1% per trade, and your stop sits ₹20 below entry. How many shares?',
+            opts: ['200', '100', '1,000'],
+            a: 1,
+            why: '1% of ₹2,00,000 is ₹2,000. Divided by ₹20 of risk per share, that is 100 shares.',
+          },
+          {
+            q: 'The stock’s ATR doubles while your capital and risk rule stay the same. What happens to your position?',
+            opts: ['It halves', 'It doubles', 'It stays the same'],
+            a: 0,
+            why: 'A wider stop means more risk per share, so the same rupee risk buys fewer shares. The rule sizes you down automatically.',
+          },
+        ],
+      },
+      {
+        id: 'm4',
+        title: 'Practise without money, then read your habits',
+        mins: 7,
+        can: 'Run paper trades and spot the three habits that show up in almost every trade log.',
+        body: [
+          'Paper trading is a rehearsal: real prices, real decisions, no money. Its value is not the profit and loss but the record. A log of your own trades is the only honest evidence about how you behave under pressure.',
+          'Three patterns show up again and again. The first is the disposition effect: holding losers far longer than winners, because closing a loss makes it real. Measure it by comparing the average time you hold winners against losers.',
+          'The second is cutting profits early. If your average win is smaller than your average loss, you can be right more often than not and still lose money. The ratio between them is the payoff ratio, and it is worth more attention than the win rate.',
+          'The third is sizing up after a loss to win it back. Compare the size of the trade you place right after a loss with your usual size; if it is consistently larger, the plan stopped driving and the emotion took over.',
+        ],
+        terms: [
+          ['Paper trade', 'A simulated trade at live prices, with no money at risk.'],
+          ['Disposition effect', 'Holding losers too long and selling winners too early.'],
+          ['Payoff ratio', 'Average win ÷ average loss.'],
+          ['Revenge trading', 'Trading bigger after a loss to recover it.'],
+        ],
+        practise: { href: '#tools/t-paper', label: 'Place a few paper trades and open the diagnostics' },
+        quiz: [
+          {
+            q: 'A trader wins 60% of trades and still loses money over a year. What is the most likely reason?',
+            opts: ['The win rate is calculated wrong', 'The average loss is much bigger than the average win', 'Brokerage fees'],
+            a: 1,
+            why: 'Win rate alone decides nothing. If each loss takes back more than a win brings in, a high win rate still adds up to a loss.',
+          },
+          {
+            q: 'What does the disposition effect look like in a trade log?',
+            opts: ['Winners held far longer than losers', 'Losers held far longer than winners', 'Trades placed at the same time every day'],
+            a: 1,
+            why: 'Closing a losing trade makes the loss final, so it gets postponed — while winners are banked quickly for the relief of being right.',
+          },
+        ],
+      },
+    ],
+  },
+  {
+    stage: 3,
+    name: 'Advanced',
+    blurb: 'Options, implied volatility, and the idea the whole platform is built on: that the same signal behaves differently depending on the state of the market.',
+    mins: 30,
+    modules: [
+      {
+        id: 'a1',
+        title: 'Options without the jargon',
+        mins: 8,
+        can: 'Explain a call and a put, what a buyer pays and risks, and why expiry matters.',
+        body: [
+          'An option is a right, not an obligation. A call gives you the right to buy at a set price; a put gives you the right to sell at one. In India those show up as CE and PE against each strike on the option chain.',
+          'You pay a premium for that right. That premium is the most a buyer can lose, however badly the trade goes — which is the appeal. The seller takes the opposite side: they keep the premium, and carry the risk that the market moves against them, which can be far larger.',
+          'Options expire. NIFTY options expire weekly, and they trade in lots, not single units — the contract’s lot size decides how many index units one contract controls, so the money at stake is the premium multiplied by that lot.',
+          'Time works against the buyer. Every day that passes with the index unchanged, an option is worth slightly less, because there is less time left for the move to happen. A buyer needs the move to be big enough, and soon enough, to beat both the premium and that decay.',
+        ],
+        terms: [
+          ['Call (CE)', 'The right to buy at the strike price.'],
+          ['Put (PE)', 'The right to sell at the strike price.'],
+          ['Premium', 'The price of the option — the buyer’s maximum loss.'],
+          ['Strike', 'The price the right is written at.'],
+          ['Lot size', 'Units of the index one contract controls.'],
+        ],
+        practise: { href: '#tools/t-options', label: 'Build a long call in the option simulator and watch the payoff' },
+        quiz: [
+          {
+            q: 'You buy a NIFTY call and the index falls hard. What is the most you lose?',
+            opts: ['The premium you paid', 'The full value of the contract', 'Unlimited'],
+            a: 0,
+            why: 'A buyer’s loss is capped at the premium — that is what the premium buys. The unlimited risk sits with the seller.',
+          },
+          {
+            q: 'A week passes and the index has not moved. What has happened to a call you bought?',
+            opts: ['It is worth the same', 'It is worth less, because less time remains for the move', 'It is worth more'],
+            a: 1,
+            why: 'Part of an option’s price is time. As expiry approaches with nothing happening, that part drains away.',
+          },
+        ],
+      },
+      {
+        id: 'a2',
+        title: 'Implied volatility and the option chain',
+        mins: 7,
+        can: 'Read implied volatility and open interest, and say why the same option costs more in a panic.',
+        body: [
+          'Implied volatility is the movement the market is pricing into an option. Feed an option’s traded price back into a pricing model and IV is the number that makes the two agree. It is expectation, not history.',
+          'That is why a call can get more expensive while the index sits still: if traders start expecting a big move, IV rises, and every option on the board reprices upward. India VIX is the same idea applied to the whole NIFTY chain.',
+          'Open interest counts contracts currently outstanding at each strike. Big open interest at a strike means many positions are anchored there; a lot of course material reads the biggest call OI as resistance and the biggest put OI as support, and treats max pain — the expiry level at which option buyers as a group lose the most — as context.',
+          'Treat all of it as context, not prophecy. Open interest says where positions sit, not where price must go, and those folk readings are widely repeated but weakly evidenced.',
+        ],
+        terms: [
+          ['Implied volatility', 'The movement priced into an option today.'],
+          ['Open interest', 'Contracts outstanding at a strike.'],
+          ['PCR', 'Put open interest ÷ call open interest.'],
+          ['Max pain', 'The expiry level where option buyers lose the most in total.'],
+        ],
+        practise: { href: '#tools/t-options', label: 'Look at the live open-interest chart and its max-pain line' },
+        quiz: [
+          {
+            q: 'The index is unchanged all day, but a call you own has gained. What most likely happened?',
+            opts: ['Implied volatility rose', 'Open interest fell', 'The lot size changed'],
+            a: 0,
+            why: 'Premiums depend on expected movement as well as on the index level. When expectations of movement rise, options reprice upward on their own.',
+          },
+          {
+            q: 'What does open interest at a strike measure?',
+            opts: ['Contracts traded today', 'Contracts currently outstanding', 'The number of traders'],
+            a: 1,
+            why: 'Volume counts what changed hands today; open interest counts positions still open. They move very differently.',
+          },
+        ],
+      },
+      {
+        id: 'a3',
+        title: 'Regimes: the same signal, different outcomes',
+        mins: 7,
+        can: 'Explain what a market regime is, how correlation defines one, and why diversification fails in stress.',
+        body: [
+          'A regime is a stretch during which the market behaves in a consistent way. The cleanest way to see one is correlation: how closely different sectors move together. When banks, IT, pharma and metals all rise and fall as one, the market is in a different state from one where they go their own way.',
+          'This platform measures that directly. It takes NSE’s sector indices, computes the average correlation between them over a rolling window, and calls the lowest third of the last two years calm, the highest third stress, and the middle transitional.',
+          'The consequence is the part that matters for a portfolio. Diversification works because holdings move differently. When correlations rise toward one, twenty stocks behave like one position, and the protection you thought you had is gone at exactly the moment you need it.',
+          'It also changes which techniques work. A breakout in a calm, dispersed market is a stock-specific event; the same breakout in a stress regime is mostly the market moving. The backtester lets you split any strategy by the regime it traded in and see the difference for yourself — and the honest answer is sometimes the opposite of what you expect.',
+        ],
+        terms: [
+          ['Regime', 'A stretch where the market behaves consistently.'],
+          ['Correlation', 'How closely two series move together, from −1 to +1.'],
+          ['Dispersion', 'The opposite of correlation: sectors going their own way.'],
+        ],
+        practise: { href: '#tools/t-backtest', label: 'Split a strategy by regime in the backtester' },
+        quiz: [
+          {
+            q: 'Correlations between sectors rise sharply. What happens to a twenty-stock portfolio?',
+            opts: ['It becomes better diversified', 'It starts behaving like far fewer independent positions', 'Nothing, because it holds twenty stocks'],
+            a: 1,
+            why: 'Diversification comes from holdings moving differently. When everything moves together, the count of holdings stops mattering.',
+          },
+          {
+            q: 'The engine calls today "calm". Relative to what?',
+            opts: ['A fixed textbook threshold', 'The last two years of this market’s own correlation readings', 'Other countries’ markets'],
+            a: 1,
+            why: 'The labels are the lowest and highest third of the last two years here. Calm in one period would not be calm in another.',
+          },
+        ],
+      },
+      {
+        id: 'a4',
+        title: 'Topology without the mathematics',
+        mins: 8,
+        can: 'Read the barcode on FIG. 1 — what H₀ and H₁ bars mean, and what persistence measures.',
+        body: [
+          'Put every sector on a map, where two sectors sit close together when they move together. That map is the shape of the market, and topology is the study of what stays true about a shape as you squint at it.',
+          'The method grows a radius around every point and links any two points closer than that radius. Start at zero and every sector is its own island; grow it and islands join. Each H₀ bar is one island, and a bar ends at the radius where it merges into another. Long H₀ bars mean sectors that stayed apart for a long time: real dispersion.',
+          'Keep growing and something else can appear — a ring of sectors connected around a hole in the middle. That is an H₁ loop, a rotation structure where each sector is tied to its neighbours but not to the ones across the ring. The bar runs from the radius where the loop opens to the one where it fills in.',
+          'Persistence is simply how long a feature survives as the radius grows. Short bars are noise; long bars are structure. That is the whole idea: instead of a single correlation number, you get a record of which groupings are robust — and when a regime shifts, you can name the sectors whose loop or grouping broke.',
+        ],
+        terms: [
+          ['H₀ bar', 'A group of assets, ending when it merges with another.'],
+          ['H₁ bar', 'A loop in the correlation structure, ending when it fills in.'],
+          ['Persistence', 'How long a feature survives as the radius grows.'],
+          ['Barcode', 'The full set of bars for one window.'],
+        ],
+        practise: { href: '#engine', label: 'Open FIG. 1 and drag the ε slider from left to right' },
+        quiz: [
+          {
+            q: 'An H₀ bar ends at ε = 0.8. What happened there?',
+            opts: ['A sector was removed from the data', 'That group merged with another at that radius', 'The market crashed'],
+            a: 1,
+            why: 'H₀ bars track groups. A bar ends exactly where its group joins another as the radius grows.',
+          },
+          {
+            q: 'Why do practitioners care about long bars rather than short ones?',
+            opts: ['Long bars are easier to draw', 'A feature that survives a wide range of radii is structure; a short one is noise', 'Short bars mean missing data'],
+            a: 1,
+            why: 'Persistence is the filter. Features that appear and vanish immediately are artefacts of the exact threshold; features that survive are real structure.',
+          },
+        ],
+      },
+    ],
+  },
+];
+
+export default CURRICULUM;

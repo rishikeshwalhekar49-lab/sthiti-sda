@@ -1,0 +1,24 @@
+/* v2 additions only; src/styles/app.css is the original stylesheet, unchanged. */
+
+/* React Bits SplitText on the hero heading keeps the heading's own block layout. */
+.hero h1.split-parent { display: block !important; }
+
+/* Sliders: the bubble is positioned inside its .ctl, as the original did by script. */
+.motion-on .ctl { position: relative; }
+
+/* Ticker: React Bits LogoLoop carrying the original index cells. */
+#ticker .logoloop__item { font-size: inherit; }
+
+/* Failsafe: if GSAP's clock never starts, show everything as plain HTML. */
+html.mo-settled .split-parent { visibility: visible !important; }
+html.mo-settled .split-word,
+html.mo-settled .split-char,
+html.mo-settled .split-line { opacity: 1 !important; transform: none !important; }
+html.mo-settled [data-mo-reveal] { visibility: visible !important; }
+html.mo-settled [data-mo-reveal] > *,
+html.mo-settled .hero :is(.eyebrow, .lede, .cta-row, .name-note, .state),
+html.mo-settled .weather-wrap { opacity: 1 !important; transform: none !important; visibility: visible !important; }
+
+/* SplitText's own box: keep the heading as a normal block, without a clipping parent
+   (each word already rides up inside its own mask). */
+.hero h1.split-parent { overflow: visible !important; }

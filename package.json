@@ -1,0 +1,15 @@
+{
+  "name": "sthiti",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Stock-market learning tied to live NSE and BSE data, with a topological regime engine.",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "optionalDependencies": {
+    "@anthropic-ai/sdk": "^0.70.0"
+  }
+}
